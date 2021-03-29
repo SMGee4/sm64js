@@ -5,8 +5,10 @@
 
 [Discord Server](https://discord.gg/7UaDnJt)
 
+# SM64JS RPG
+
 ## What is this?
-This is an ongoing work-in-progress port of the decompilation of original Nintendo game, Super Mario 64, to native Javascript (no emulation or web assembly). The project involved creating a Javascript WebGL port of N64 Fast 3D Renderer, originally implemented with OpenGL in C.  This project also includes the development of online mass multiplayer versions of sm64js and other custom multiplayer game modes.
+This is an extension ongoing work-in-progress port of the decompilation of original Nintendo game, Super Mario 64, to native Javascript (no emulation or web assembly). The project (not mine) involved creating a Javascript WebGL port of N64 Fast 3D Renderer, originally implemented with OpenGL in C.  This project (not mine) also includes the development of online mass multiplayer versions of sm64js and other custom multiplayer game modes.
 
 ## Build instructions - Windows, Mac, or Linux 
 
@@ -19,7 +21,7 @@ This is an ongoing work-in-progress port of the decompilation of original Ninten
 git clone https://github.com/sm64js/sm64js.git && cd sm64js
 # Install node packages
 npm install
-# Launch wepback dev server
+# Launch webpack dev server
 npm run start
 ```
 
