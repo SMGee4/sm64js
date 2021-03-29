@@ -32,16 +32,16 @@
                     <a class="nav-link" href="https://mmo.sm64js.com">MMO</a>
                     <a class="nav-link" href="https://60fps.sm64js.com">60fps</a>
                     <a class="nav-link" href="#What">About</a>
-                    <a class="nav-link" href="https://github.com/sm64js/sm64js">Source Code</a>
-                    <a class="nav-link" href="https://discord.gg/7UaDnJt">Discord Server</a>
+                    <a class="nav-link" href="https://github.com/SMGee4/sm64js">Source Code</a>
+                    <a class="nav-link" href="https://discord.gg/7UaDnJt">SM64JS Discord Server</a>
                     <a class="nav-link" href="#Contact">Contact</a>
                 </nav>
             </div>
         </header>
 
         <main role="main" class="inner cover" hidden id="mainContent">
-            <h1 class="cover-heading rainbowText">Super Mario 64 - Javascript Port</h1>
-            <h6 style="color:red">This project is currently still being developed. This page may be live from time to time for testing, but there may be glitches and performance issues. The server will go down and restart at random times without warning. If you would like to help with the project or have feedback please contact me.</h6>
+            <h1 class="cover-heading rainbowText">Super Mario 64 RPG</h1>
+            <h6 style="color:red">This is a project of an idea that I've been working on. An RPG game for Super Mario 64! There hasn't been many RPG Mods at all so consider this something no one has ever done before! Disclaimer: This RPG has nothing to do with Super Mario RPG: Legend of The Seven Stars, but my creation will suffice for your anticipation of a Super Mario 64 Role-Playing game. Also, a little fact about me. You may be wondering why my name may sound similar to a popular person, here is the reason. I have a hard time thinking of nicknames and the one's that I use, (which is literally like 2) I didn't want to reveal them as if they were actually cool. It took me years to think of those nicknames. Anyway, I feel there may be tension between some people and me and I'm guessing it's because of my silly name. I chose this name because I literally couldn't think of anything else and changing my name now, no one would recognize me. I hate my name and I really wish I could change it. I'm not a diehard fan of... And I definitely don't enjoy watching this particular person anymore. I'm a cool guy and made this cool game IN WHICH. Is different than what you'd expect. One more thing that I ask, please, please, please don't spoil or "leak" any information form my game. This game has a story mode and I don't want trolls or anyone to ruin the experience of my game. The trolls can get blocked but I'm asking you guys to keep the story confidential, the gameplay is fine. As you know from other games, I just don't want you to spoil the important stuff. That is all. Now go have some fun!</h6>
             <form id="romSelect" class="form-group">
                 <h4 style="color:#fa3e3e">Select US sm64 (z64) ROM File from your computer</h4>
                 <input id="romFile" class="btn btn-secondary btn-sm" type="file">
@@ -50,7 +50,7 @@
             <h6 id="romMessage">This project uses the textures and other game assets from the original game. Due to copyright issues, I cannot host those assets on this site. Please select a sm64 ROM to extract those assets before you can play.</h6>
             <div class="row" style="justify-content:center">
                 <button id="startbutton" type="button" class="btn btn-success" disabled>Start Game</button>
-                <a href="https://github.com/sm64js/sm64js/issues" style="margin-left:30px" type="button" class="btn btn-warning">Submit Bug</a>
+                <a href="https://github.com/SMGee4/sm64js/issues" style="margin-left:30px" type="button" class="btn btn-warning">Submit Bug</a>
             </div>
             <br />
             <div class="row" style="justify-content:center">
@@ -96,19 +96,7 @@
                 </div>
                 <div class="col-3">
                     <select id="mapSelect" class="form-control form-control-sm">
-                        <option>Castle Grounds</option>
-                        <option>Castle Inside First Level</option>
-                        <option>Castle Inside Second Level</option>
-                        <option>Bob-omb Battlefield</option>
-                        <option>Castle Courtyard</option>
-                        <option>Cool, Cool Mountain</option>
-                        <option>Princess's Secret Slide</option>
-                        <option>Tall, Tall Mountain</option>
-                        <option>Whomps Fortress</option>
-                        <option>Hazy Maze Cave</option>
-                        <option>Big Boo's Haunt</option>
-                        <option>Shifting Sand Land</option>
-                        <option>Snowman's Land</option>
+                        <option>Bowser's Castle</option>
                     </select>
                 </div>
 
@@ -147,16 +135,16 @@
             <a name="What"></a>
             <h4>What is this?</h4>
             <p>
-                This is an ongoing work-in-progress port of the <a href="https://github.com/n64decomp/sm64">decompilation</a> of original Nintendo game, Super Mario 64, to native Javascript (No Emulation) (No Web Assembly).
-                This project required creating a Javascript WebGL port of <a href="https://github.com/Emill/n64-fast3d-engine">N64 Fast 3D Renderer</a> originally implemented with OpenGL in C. This project also includes the development of online mass multiplayer versions of sm64js and other custom multiplayer game modes.
+                This is an extension of an ongoing work-in-progress port of the <a href="https://github.com/n64decomp/sm64">decompilation</a> of original Nintendo game, Super Mario 64, to native Javascript (No Emulation) (No Web Assembly).
+                This project (not mine) required creating a Javascript WebGL port of <a href="https://github.com/Emill/n64-fast3d-engine">N64 Fast 3D Renderer</a> originally implemented with OpenGL in C. This project (not mine) also includes the development of online mass multiplayer versions of sm64js and other custom multiplayer game modes.
             </p>
             <br />
 
             <a name="Purpose"></a>
-            <h4>What is the purpose of this port?</h4>
+            <h4>What is the purpose of this port? (not mine in particular)</h4>
             <ul style="display:inline-block;vertical-align:middle;text-align:left">
                 <li>
-                    <b>Extensibility:</b> More access to more developers to add custom content
+                    <b>Extensibility:</b> More access to more developers to add custom content. LIKE ME!
                     <ul style="padding-left:40px">
                         <li>Rapid Prototyping</li>
                         <li>More friendly to importing other software modules/packages</li>
@@ -171,7 +159,7 @@
 
             <a name="WASM"></a>
             <h4>What's wrong with Web Assembly / Emscripten</h4>
-            <p>Nothing. However, I believe access to this game's source code in a higher level programming language opens it up to a wider pool of potentially capable developers / modders. And seems to me like a natural next step following in the amazing work done by the decomp team and pc port.</p>
+            <p>Nothing. However, I believe (not me talking, talking? More like writing) access to this game's source code in a higher level programming language opens it up to a wider pool of potentially capable developers / modders. LIKE ME! And seems to me like a natural next step following in the amazing work done by the decomp team and pc port.</p>
             <br />
 
             <a name="Credits"></a>
@@ -181,17 +169,13 @@
 
             <div class="row" style="justify-content:center;">
                 <h5>
-                    <a style="font-weight:bold !important;" href="https://github.com/sm64js/sm64js/graphs/contributors">Developers / Contributors</a>
+                    <a style="font-weight:bold !important;" href="https://github.com/SMGee4/sm64js/graphs/contributors">Developer / Contributor</a>
                 </h5>
 
             </div>
             <div class="row" style="justify-content:center;">
                 <p>
-                    <a style="color:#fdffd4" href="https://sm64js.com">Snuffy</a>,
-                    <a style="color:#fdffd4" href="https://github.com/ScottDikowitz">ScottDikowitz</a>,
-                    <a style="color:#fdffd4" href="https://luphoria.github.io/">luphoria</a>,
-                    <a style="color:#fdffd4" href="https://github.com/djoslin0">djoslin0</a>,
-                    <a style="color:#fdffd4" href="https://github.com/J4ckr07">J4ckr07</a>
+                    <a style="color:#fdffd4" href="https://github.com/SMGee4">SMGee4</a>
                 </p>
             </div>
             <br />
@@ -215,7 +199,7 @@
                     <p class="mb-0">
                         OpenGL Implementation of a 3D renderer for the Nintendo 64's graphics
                     </p>
-                    <small>   (I had to reimplement this in Javascript and WebGL)   </small>
+                    <small>   (I had to reimplement this in Javascript and WebGL(not me))   </small>
                 </div>
             </div>
 
@@ -230,21 +214,21 @@
 
                     </p>
                     <small>
-                        (Special thanks to <a href="https://github.com/djoslin0">djoslin0</a>, the developer of this project, for consultation and advice on the implementation of multiplayer for sm64js. I also ported some  code from this project directly)
+                        (Special thanks to (not me writing)<a href="https://github.com/djoslin0">djoslin0</a>, the developer of this project, for consultation and advice on the implementation of multiplayer for sm64js. I also ported some  code from this project directly)
                     </small>
                 </div>
             </div>
-
-
-
+             <div class="row">
+                <div class="col">
+                    <h6><a style="font-weight:bold !important" href="https://github.com/sm64js/sm64js>Super Mario 64 JavaSCript Port</a></h6>
+                    <p>The wonderful team that compiled Super Mario 64 into JavaScript</p>
             <br />
             <div class="row" style="justify-content:center;">
                 <h6>Other Libraries</h6>
             </div>
             <div class="row" style="justify-content:center;">
                 <p>
-                    <a style="color:#fdffd4" href="https://github.com/geckosio/geckos.io">Geckos.io</a>,
-                    <a style="color:#fdffd4" href="https://jeremyckahn.github.io/keydrown/">Keydrown</a>,
+                    <a style="color:#fdffd4" href="https://github.com/n64decomp/mk64">Mario Kart 64 Decomp. Where I got Bowser's Castle from; had to change this to JS of course</a>
                 </p>
             </div>
 
@@ -253,10 +237,9 @@
             </div>
             <div class="row" style="justify-content:center;">
                 <p>
-                    <a style="color:#fdffd4" href="https://github.com/Tarnadas">Tarnadas</a>,
-                    <a style="color:#fdffd4" href="https://github.com/yandeu">Yannick</a>,
-                    <a style="color:#fdffd4" href="https://github.com/josegonzalez">Jose Diaz-Gonzalez</a>,
-                    <a style="color:#fdffd4" href="https://github.com/Emill">Emill</a>,
+                    <a style="color:#fdffd4" href="https://github.com/CoderStig">CoderStig: Leader for Mario Kart 64 Decomp</a>,
+                    <a style="color:#fdffd4" href="https://www.youtube.com/c/NoahGiesler/about">Noah Gielser: For that song that doesn't belong here</a>,
+                    <a style="color:#fdffd4" href="https://youtube.com/c/SuperMarioBros575">SMB575: A little inspiration for that one part in the game that doesn't belong there. He didn't help make the game though. But that pretty much gave me the idea of making an RPG game. Thanks again!</a>,
                 </p>
             </div>
 
@@ -264,11 +247,11 @@
             <a name="Contact"></a>
             <h4>Contact</h4>
             <p>
-                Questions? Suggestions? Want to help with this project? =)
+                Questions? Suggestions? Want to applaude me on my wonderful creation?
                 <br />
-                I have a discord server dedicated to sm64js: <a href="https://discord.gg/7UaDnJt"> Join Here </a>
+                Contact me on Discord: <a href="https://discord.gg/7UaDnJt"> Contact me Here</a>
                 <br />
-                Discord: snuffysasa#2779
+                Discord: SMGee4#6888
             </p>
             <br />
 
