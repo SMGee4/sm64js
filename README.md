@@ -18,7 +18,7 @@ This is an extension ongoing work-in-progress port of the decompilation of origi
 ### Run these commands
 ```bash
 # Clone the source code
-git clone https://github.com/sm64js/sm64js.git && cd sm64js
+git clone https://github.com/SMGee4/sm64js.git && cd sm64js
 # Install node packages
 npm install
 # Launch webpack dev server
@@ -45,7 +45,7 @@ docker exec -it mySm64JsServer /bin/sh
 # Install additional prerequisites
 apk update && apk add git
 # Clone the source code
-git clone https://github.com/sm64js/sm64js.git && cd sm64js
+git clone https://github.com/SMGee4/sm64js.git && cd sm64js
 
 # Install node packages, build, and serve
 npm run build 
