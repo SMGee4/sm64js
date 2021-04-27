@@ -186,6 +186,8 @@ export const oActiveParticleFlags = 0x16
 export const oAction = 0x31
 export const oSubAction = 0x32
 
+export const oUnkBC = 0x0D
+
 /* Checkerboard Platform */
 export const oCheckerBoardPlatformUnkF8  = 0x1C
 export const oCheckerBoardPlatformUnkFC  = 0x1D
@@ -217,6 +219,8 @@ export const oWoodenPostPrevAngleToMario = 0x1C
 export const oWoodenPostSpeedY           = 0x1D
 export const oWoodenPostMarioPounding    = 0x1E
 export const oWoodenPostOffsetY = 0x1F
+
+export const oButterflyYPhase = 0x1B
 
 /* Chain Chomp */
 export const oChainChompSegments                     = 0x1B
@@ -315,3 +319,10 @@ export const oWaterObjUnk100 = 0x1E
 export const oCoinUnkF4  = 0x1B
 export const oCoinUnkF8  = 0x1C
 export const oCoinUnk110 = 0x22
+
+/*Door */
+
+export const oDoorUnk88  = 0x00
+export const oDoorUnkF8  = 0x1C
+export const oDoorUnkFC  = 0x1D 
+export const oDoorUnk100 = 0x1E

@@ -369,4 +369,6 @@ export const texture_waterbox_water = []
 export const texture_waterbox_lava = []
 
 export const texture_transition_star_half = []
+export const texture_transition_bowser_half = []
+export const texture_transition_troll_half = []
 

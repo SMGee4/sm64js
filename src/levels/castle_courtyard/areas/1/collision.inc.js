@@ -9,7 +9,7 @@ import {
     COL_SPECIAL_INIT,
     COL_WATER_BOX_INIT,
     COL_WATER_BOX,
-    SPECIAL_OBJECT_WITH_YAW,
+
     SPECIAL_OBJECT,
 
     SURFACE_DEFAULT,
@@ -19,6 +19,9 @@ import {
     special_level_geo_03,
     special_spiky_tree
 } from "../../../../include/surface_terrains"
+
+import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM } from "../../../../include/special_presets" 
+
 // 0x070059A8 - 0x07006E1E
 export const castle_courtyard_seg7_collision = [
     ...COL_INIT(),
@@ -887,11 +890,9 @@ export const castle_courtyard_seg7_collision = [
     SPECIAL_OBJECT( special_spiky_tree,        -2446, -214, -1786),
     SPECIAL_OBJECT( special_spiky_tree,        -2820, -214, -1317),
     SPECIAL_OBJECT( special_spiky_tree,        -1868, -214,   -45),
-    // SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_wooden_door_warp,      0,    0,   461,    0,  1),
     */
-   /*
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_wooden_door_warp,      0,    0,   461,    0,  1),
     ...COL_WATER_BOX_INIT(1),
     ...COL_WATER_BOX(0, -656, -2405, 674, -1074, 51),
-    */
     ...COL_END(),
 ]

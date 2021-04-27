@@ -6,11 +6,14 @@ import {
     COL_TRI,
     COL_TRI_STOP,
     COL_END,
+    SPECIAL_OBJECT_WITH_YAW,
+    
 
     SURFACE_DEFAULT,
     SURFACE_VERY_SLIPPERY,
     SURFACE_NOT_SLIPPERY,
-    SURFACE_NO_CAM_COLLISION
+    SURFACE_NO_CAM_COLLISION,
+    SURFACE_TRAPDOOR
 } from "../../../../include/surface_terrains"
 export const inside_castle_seg7_area_1_collision = [
     ...COL_INIT(),
@@ -3749,13 +3752,14 @@ export const inside_castle_seg7_area_1_collision = [
     ...COL_TRI_INIT(SURFACE_DEFAULT, 2),
     ...COL_TRI(173, 174, 175),
     ...COL_TRI(173, 176, 174),
-    ...COL_TRI_INIT(SURFACE_DEFAULT, 2), // SURFACE_TRAPDOOR
+    ...COL_TRI_INIT(SURFACE_TRAPDOOR, 2),
     ...COL_TRI(77, 78, 79),
     ...COL_TRI(77, 79, 80),
     ...COL_TRI_STOP(),
     /*
     ...COL_SPECIAL_INIT(11),
-    SPECIAL_OBJECT_WITH_YAW( special_null_start,         -1023,    0,  1152,  128), // unused, probably an early way to set intial position
+    SPECIAL_OBJECT_WITH_YAW( special_null_start,         -1023,    0,  1152,  128), // unused, probably an early way to set intial position 
+    */
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,         -271,    0,  -824,   32),
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,        -1775,    0,  -824,  224),
     SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -1100,    0,  2202,    0,  0),
@@ -3766,6 +3770,5 @@ export const inside_castle_seg7_area_1_collision = [
     SPECIAL_OBJECT_WITH_YAW( special_1star_door,           644,  614, -1476,  224),
     SPECIAL_OBJECT_WITH_YAW( special_3star_door,          1075,  205,  -229,  192),
     SPECIAL_OBJECT_WITH_YAW( special_3star_door,         -2303,    0, -1074,    0),
-    */
     ...COL_END(),
 ]

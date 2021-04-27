@@ -1,7 +1,7 @@
 import { SpawnObjectInstance as Spawn } from "./SpawnObject"
 import { AreaInstance as Area } from "./Area"
 import { geo_obj_init, geo_obj_init_animation_accel, GRAPH_RENDER_INVISIBLE } from "../engine/graph_node"
-import { oPosX, oPosY, oPosZ, oFaceAngleRoll, oFaceAnglePitch, oFaceAngleYaw, oMoveAnglePitch, oMoveAngleRoll, oMoveAngleYaw, oParentRelativePosX, oParentRelativePosY, oParentRelativePosZ, oBehParams2ndByte, oBehParams, oVelX, oForwardVel, oVelZ, oVelY, oGravity, oAnimState, oIntangibleTimer, oAnimations, ACTIVE_FLAGS_DEACTIVATED, OBJ_MOVE_ABOVE_DEATH_BARRIER, ACTIVE_FLAG_FAR_AWAY, ACTIVE_FLAG_IN_DIFFERENT_ROOM, oFloorHeight, oFloor, oFloorType, oFloorRoom, OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER, OBJ_MOVE_IN_AIR, oWallHitboxRadius, oWallAngle, oMoveFlags, OBJ_MOVE_ABOVE_LAVA, OBJ_MOVE_HIT_WALL, oBounciness, oBuoyancy, oDragStrength, oAngleVelYaw, OBJ_MOVE_HIT_EDGE, OBJ_MOVE_ON_GROUND, OBJ_MOVE_AT_WATER_SURFACE, OBJ_MOVE_MASK_IN_WATER, OBJ_MOVE_LEAVING_WATER, OBJ_MOVE_ENTERED_WATER, OBJ_MOVE_MASK_ON_GROUND, OBJ_MOVE_UNDERWATER_ON_GROUND, OBJ_MOVE_LEFT_GROUND, OBJ_MOVE_UNDERWATER_OFF_GROUND, OBJ_MOVE_MASK_33, oRoom, ACTIVE_FLAG_UNK10, OBJ_MOVE_13, OBJ_MOVE_LANDED, oInteractStatus, oHomeX, oHomeY, oHomeZ, oOpacity, ACTIVE_FLAG_UNK7, oNumLootCoins, oCoinUnk110, oTimer } from "../include/object_constants"
+import { oPosX, oPosY, oPosZ, oFaceAngleRoll, oFaceAnglePitch, oFaceAngleYaw, oMoveAnglePitch, oMoveAngleRoll, oMoveAngleYaw, oParentRelativePosX, oParentRelativePosY, oParentRelativePosZ, oBehParams2ndByte, oBehParams, oVelX, oForwardVel, oVelZ, oVelY, oGravity, oAnimState, oIntangibleTimer, oAnimations, ACTIVE_FLAGS_DEACTIVATED, OBJ_MOVE_ABOVE_DEATH_BARRIER, ACTIVE_FLAG_FAR_AWAY, ACTIVE_FLAG_IN_DIFFERENT_ROOM, oFloorHeight, oFloor, oFloorType, oFloorRoom, OBJ_MOVE_MASK_HIT_WALL_OR_IN_WATER, OBJ_MOVE_IN_AIR, oWallHitboxRadius, oWallAngle, oMoveFlags, OBJ_MOVE_ABOVE_LAVA, OBJ_MOVE_HIT_WALL, oBounciness, oBuoyancy, oDragStrength, oAngleVelYaw, OBJ_MOVE_HIT_EDGE, OBJ_MOVE_ON_GROUND, OBJ_MOVE_AT_WATER_SURFACE, OBJ_MOVE_MASK_IN_WATER, OBJ_MOVE_LEAVING_WATER, OBJ_MOVE_ENTERED_WATER, OBJ_MOVE_MASK_ON_GROUND, OBJ_MOVE_UNDERWATER_ON_GROUND, OBJ_MOVE_LEFT_GROUND, OBJ_MOVE_UNDERWATER_OFF_GROUND, OBJ_MOVE_MASK_33, oRoom, ACTIVE_FLAG_UNK10, OBJ_MOVE_13, OBJ_MOVE_LANDED, oInteractStatus, oHomeX, oHomeY, oHomeZ, oOpacity, ACTIVE_FLAG_UNK7, oNumLootCoins, oCoinUnk110, oTimer, oPrevAction } from "../include/object_constants"
 
 import { ObjectListProcessorInstance as ObjectListProc } from "./ObjectListProcessor"
 import { LevelUpdateInstance as LevelUpdate } from "./LevelUpdate"
@@ -28,6 +28,47 @@ export const cur_obj_set_model = (modelID) => {
     o.header.gfx.sharedChild = Area.gLoadedGraphNodes[modelID]
 }
 
+export const cur_obj_has_model = (modelID) => {
+    const o = ObjectListProc.gCurrentObject
+  if (o.header.gfx.sharedChild == Area.gLoadedGraphNodes[modelID]) {
+        return TRUE;
+    } else {
+        return FALSE;
+    }
+}
+
+ export const cur_obj_clear_interact_status_flag = (flag) => {
+    const o = ObjectListProc.gCurrentObject
+
+   if (o.rawData[oInteractStatus] & flag) {
+        (o.rawData[oInteractStatus] &= flag ^ ~(0))
+        return TRUE
+    }
+    return FALSE
+ }
+
+ export const cur_obj_change_action = (action) => {
+      const o = ObjectListProc.gCurrentObject
+       (o.rawData[oAction] = action)
+    (o.rawData[oPrevAction] = action)
+    cur_obj_reset_timer_and_subaction();
+}
+
+/*Fix if neccessary seems suspicious...
+export const cur_obj_nearest_object_with_behavior = () => {
+    const o = ObjectListProc.gCurrentObject
+
+    obj = cur_obj_find_nearest_object_with_behavior()
+
+    return obj
+}
+    cur_obj_dist_to_nearest_object_with_behavior(); {
+
+    obj = cur_obj_find_nearest_object_with_behavior();
+    if (obj == NULL) {
+        dist = 15000.0
+    }
+    */
 export const cur_obj_set_pos_to_home = () => {
     const o = ObjectListProc.gCurrentObject
 
@@ -153,6 +194,34 @@ export const geo_update_layer_transparency = (run, node) => {
     }
 
     return sp3C
+}
+
+export const cur_obj_enable_rendering_if_mario_in_room = ()  => {
+    const o = ObjectListProc.gCurrentObject
+    
+    this.sregister =  marioInRoom
+
+    if ((o.rawData[oRoom] != -1 && ObjectListProc.gMarioCurrentRoom != 0)) {
+        if (ObjectListProc.gMarioCurrentRoom == (o.rawData[oRoom])) {
+            marioInRoom = TRUE
+        } else if (ObjectListProc.gDoorAdjacentRooms[ObjectListProc.gMarioCurrentRoom][0] == (o.rawData[oRoom])) {
+            marioInRoom = TRUE
+        } else if (ObjectListProc.gDoorAdjacentRooms[ObjectListProc.gMarioCurrentRoom][1] == (o.rawData[oRoom])) {
+            marioInRoom = TRUE
+        } else {
+            marioInRoom = FALSE
+        }
+
+        if (marioInRoom) {
+            cur_obj_enable_rendering()
+            (o.rawData[activeFlags] &= ~ACTIVE_FLAG_IN_DIFFERENT_ROOM)
+                ObjectListProc.gNumRoomedObjectsInMarioRoom++
+        } else {
+            cur_obj_disable_rendering()
+            (o.rawData[activeFlags |= ACTIVE_FLAG_IN_DIFFERENT_ROOM])
+                ObjectListProc.gNumRoomedObjectsNotInMarioRoom++
+        }
+    }
 }
 
 export const spawn_object_at_origin = (parent, model, behavior) => {

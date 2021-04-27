@@ -7,6 +7,7 @@ import {
     COL_TRI,
     COL_TRI_STOP,
     COL_END,
+    SPECIAL_OBJECT_WITH_YAW,
 
     SURFACE_DEFAULT,
     SURFACE_HANGABLE,
@@ -3618,9 +3619,8 @@ export const hmc_seg7_collision_level = [
     ...COL_TRI(55, 56, 57),
     ...COL_TRI(55, 58, 56),
     ...COL_TRI_STOP(),
-    /*
     ...COL_SPECIAL_INIT(13),
-    SPECIAL_OBJECT_WITH_YAW( special_null_start,   -7601,  2253,  7630,   96), // unused, probably an early way to set intial position
+    //SPECIAL_OBJECT_WITH_YAW( special_null_start,   -7601,  2253,  7630,   96), // unused, probably an early way to set intial position
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,    922, -4689,  2330,  192),
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,  -3586,  1536,   647,   19),
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,   5911,  -204,   870,    0),
@@ -3637,6 +3637,5 @@ export const hmc_seg7_collision_level = [
     ...COL_WATER_BOX(0, -7628, -2559, 563, 7654, -4791),
     ...COL_WATER_BOX(50, 1690, -6348, 6298, 819, -818),
     ...COL_WATER_BOX(51, 1690, -6348, 6298, 819, -821),
-    */
     ...COL_END(),
 ]

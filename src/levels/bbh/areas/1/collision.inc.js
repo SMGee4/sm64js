@@ -6,6 +6,7 @@ import {
     COL_TRI,
     COL_TRI_STOP,
     COL_END,
+    SPECIAL_OBJECT_WITH_YAW,
 
     SURFACE_DEFAULT,
     SURFACE_VERY_SLIPPERY,
@@ -3753,9 +3754,8 @@ export const bbh_seg7_collision_level = [
     ...COL_TRI(8, 11, 9),
     ...COL_TRI(12, 14, 15),
 	...COL_TRI_STOP(),
-	/*
-    ...COL_SPECIAL_INIT(26),
-    ...SPECIAL_OBJECT_WITH_YAW( special_null_start,     1434,  -204,  4710,  128), // unused, probably an early way to set intial position
+    //...COL_SPECIAL_INIT(26),
+    //...SPECIAL_OBJECT_WITH_YAW( special_null_start,     1434,  -204,  4710,  128), // unused, probably an early way to set intial position
     ...SPECIAL_OBJECT_WITH_YAW( special_haunted_door,      0, -2457,  2099,  128),
     ...SPECIAL_OBJECT_WITH_YAW( special_haunted_door,  -1996, -2457,   205,  192),
     ...SPECIAL_OBJECT_WITH_YAW( special_haunted_door,   1587, -2457,   205,   64),
@@ -3784,6 +3784,5 @@ export const bbh_seg7_collision_level = [
     ...COL_WATER_BOX_INIT(2),
     ...COL_WATER_BOX(0, -4812, 1485, 640, 7270, -2405),
 	...COL_WATER_BOX(1, 1536, -1637, 3789, 2662, -2508),
-	*/
     ...COL_END(),
 ]

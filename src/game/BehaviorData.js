@@ -1,18 +1,22 @@
 import { BehaviorCommandsInstance as BhvCmds } from "../engine/BehaviorCommands"
 import { ObjectListProcessorInstance as ObjectListProcessor } from "./ObjectListProcessor"
-import { oFlags, oInteractType, oAnimations, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE, oIntangibleTimer, OBJ_FLAG_COMPUTE_DIST_TO_MARIO, OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO, OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW, OBJ_FLAG_PERSISTENT_RESPAWN, OBJ_FLAG_HOLDABLE, oDamageOrCoinValue, oAnimState, OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL, OBJ_FLAG_MOVE_XZ_USING_FVEL, oGraphYOffset, oNumLootCoins, OBJ_FLAG_ACTIVE_FROM_AFAR, oActiveParticleFlags, ACTIVE_PARTICLE_H_STAR, ACTIVE_PARTICLE_V_STAR, ACTIVE_PARTICLE_TRIANGLE, ACTIVE_PARTICLE_DUST, ACTIVE_PARTICLE_BUBBLE, oWaterObjUnkF4, oWaterObjUnkF8, oPosX, oWaterObjUnkFC, oPosY, oPosZ, oInteractionSubtype } from "../include/object_constants"
+import { oFlags, oInteractType, oAnimations, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE, oIntangibleTimer, OBJ_FLAG_COMPUTE_DIST_TO_MARIO, OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO, OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW, OBJ_FLAG_PERSISTENT_RESPAWN, OBJ_FLAG_HOLDABLE, oDamageOrCoinValue, oAnimState, OBJ_FLAG_MOVE_Y_WITH_TERMINAL_VEL, OBJ_FLAG_MOVE_XZ_USING_FVEL, oGraphYOffset, oNumLootCoins, OBJ_FLAG_ACTIVE_FROM_AFAR, oActiveParticleFlags, ACTIVE_PARTICLE_H_STAR, ACTIVE_PARTICLE_V_STAR, ACTIVE_PARTICLE_TRIANGLE, ACTIVE_PARTICLE_DUST, ACTIVE_PARTICLE_BUBBLE, oWaterObjUnkF4, oWaterObjUnkF8, oPosX, oWaterObjUnkFC, oPosY, oPosZ, oInteractionSubtype, oCollisionDistance, oDrawingDistance } from "../include/object_constants"
 import * as Interact from "./Interaction"
+import { INT_SUBTYPE_STAR_DOOR } from "./Interaction"
 import { bhv_pole_base_loop } from "./behaviors/pole_base.inc"
 import { bhv_pole_init, bhv_giant_pole_loop } from "./behaviors/pole.inc"
 import { bhv_castle_flag_init } from "./behaviors/bhv_castle_flag_init.inc"
 import { castle_grounds_seg7_anims_flags } from "../levels/castle_grounds/areas/1/11/anim.inc"
 import { bhv_checkerboard_elevator_group_init, bhv_checkerboard_platform_init, bhv_checkerboard_platform_loop } from "./behaviors/checkerboard_platform.inc"
 import { checkerboard_platform_seg8_collision_0800D710 } from "../actors/checkerboard_platform/collision.inc"
+import { door_seg3_collision_0301CE78 } from "../actors/warp_collision/collision.inc"
+import { inside_castle_seg7_collision_star_door } from "../levels/castle_inside/star_door/collision.inc"
 import { bhv_seesaw_platform_init, bhv_seesaw_platform_update } from "./behaviors/seesaw_platform.inc"
 import { SurfaceLoadInstance as SurfaceLoad } from "./SurfaceLoad"
 import { goomba_seg8_anims_0801DA4C } from "../actors/goomba/anims/table.inc"
 import { bhv_goomba_init, bhv_goomba_update, bhv_goomba_triplet_spawner_update } from "./behaviors/goomba.inc"
 import { bobomb_seg8_anims_0802396C } from "../actors/bobomb/anims/table.inc"
+import { door_seg3_anims_030156C0 } from "../actors/door/anims/table.inc"
 import { bhv_bobomb_loop, bhv_bobomb_init, bhv_bobomb_fuse_smoke_init, bhv_dust_smoke_loop } from "./behaviors/bobomb.inc"
 import { gLinker } from "./Linker"
 import { bhv_explosion_init, bhv_explosion_loop } from "./behaviors/explosion.inc"
@@ -29,6 +33,12 @@ import { bhv_bubble_wave_init, bhv_small_water_wave_loop } from "./behaviors/wat
 import { bhv_coin_formation_init, bhv_coin_formation_loop, bhv_coin_formation_spawn_loop, bhv_yellow_coin_init, bhv_yellow_coin_loop, bhv_golden_coin_sparkles_loop, bhv_coin_sparkles_loop, bhv_coin_init, bhv_coin_loop } from "./behaviors/coin.inc"
 import { bhv_red_coin_init, bhv_red_coin_loop } from "./behaviors/red_coin.inc"
 import { bhv_moving_yellow_coin_init, bhv_moving_yellow_coin_loop } from "./behaviors/moving_coin.inc"
+import { bhv_star_door, bhv_star_door_loop } from "./behaviors/star_door.inc"
+import { bhv_door_init, bhv_door_loop, bhv_star_door_loop_2 } from "./behaviors/door.inc"
+import { bhv_castle_floor_trap_init, bhv_castle_floor_trap_loop, bhv_floor_trap_in_castle_loop } from "./behaviors/castle_floor_trap.inc"
+import { inside_castle_seg7_collision_floor_trap } from "../levels/castle_inside/trap_door/collision.inc"
+//import { bhv_door_warp } from "./behaviors/door.inc" 
+
 
 
 const OBJ_LIST_PLAYER = 0     //  (0) mario
@@ -531,6 +541,70 @@ export const bhvCoinSparkles = [
     { command: BhvCmds.end_repeat },
     { command: BhvCmds.deactivate }
 ]
+
+export const bhvStarDoor = [
+    { command: BhvCmds.begin, args: { objListIndex: OBJ_LIST_SURFACE } },
+    { command: BhvCmds.set_int, args: { field: oInteractType, value: Interact.INTERACT_DOOR } },
+    { command: BhvCmds.load_collision_data, args: { data: inside_castle_seg7_collision_star_door } },
+    { command: BhvCmds.set_int, args: { field: oInteractionSubtype, value: INT_SUBTYPE_STAR_DOOR } },
+    { command: BhvCmds.or_int, args: { field: oFlags, value: OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE }, },
+    { command: BhvCmds.set_hitbox, args: { radius: 80, height: 100 } },
+    { command: BhvCmds.set_home },
+    { command: BhvCmds.set_float, args: { field: oDrawingDistance, value: 20000 } },
+      { command: BhvCmds.call_native, args: { func: bhv_door_init } },
+    { command: BhvCmds.set_int, args: { field: oIntangibleTimer, value: 0 } },
+    { command: BhvCmds.begin_loop },
+      { command: BhvCmds.call_native, args: { func: bhv_star_door_loop } },
+      { command: BhvCmds.call_native, args: { func: bhv_star_door_loop_2 } },
+      //{ command: BhvCmds.call_native, args: { func: SurfaceLoad.load_object_collision_model, funcClass: SurfaceLoad } },
+    { command: BhvCmds.end_loop }
+]
+
+/* 
+TODO DOOR WARPS 
+const BehaviorScript bhvDoorWarp[] = {
+    //BEGIN(OBJ_LIST_SURFACE),
+    //SET_INT(oInteractType, INTERACT_WARP_DOOR),
+    //GOTO(bhvDoor + 1 + 1),
+};
+*/
+
+export const bhvDoor = [
+    { command: BhvCmds.begin, args: { objListindex: OBJ_LIST_SURFACE } },
+    { command: BhvCmds.set_int, args: { oInteractType: Interact.INTERACT_DOOR } },
+    { command: BhvCmds.or_int, args: { field: oFlags, value: OBJ_FLAG_ACTIVE_FROM_AFAR | OBJ_FLAG_COMPUTE_DIST_TO_MARIO | OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE } },
+    { command: BhvCmds.load_animations, args: { field: oAnimations, anims: door_seg3_anims_030156C0 } },
+    { command: BhvCmds.animate, args: { animIndex: 0 } },
+    { command: BhvCmds.load_collision_data, args: { data: door_seg3_collision_0301CE78 } },
+    { command: BhvCmds.set_hitbox, args: { radius: 80, height: 100 } },
+    { command: BhvCmds.set_int, args: { field: oIntangibleTimer, value: 0 } },
+    { command: BhvCmds.set_float, args: { field: oCollisionDistance, value: 1000 } },
+    { command: BhvCmds.set_home },
+      { command: BhvCmds.call_native, args: { func: bhv_door_init } },
+    { command: BhvCmds.begin_loop },
+      { command: BhvCmds.call_native, args: { func: bhv_door_loop } },
+    { command: BhvCmds.end_loop }
+]
+
+export const bhvCastleFloorTrap = [
+    { command: BhvCmds.begin, args: { objListIndex: OBJ_LIST_DEFAULT } },
+    { command: BhvCmds.disable_rendering },
+      { command: BhvCmds.call_native, args: { func: bhv_castle_floor_trap_init } },
+    { command: BhvCmds.begin_loop },
+      { command: BhvCmds.call_native, args: { func: bhv_castle_floor_trap_loop } },
+    { command: BhvCmds.end_loop }
+]
+
+export const bhvFloorTrapInCastle = [
+ { command: BhvCmds.begin, args: { objListIndex: OBJ_LIST_SURFACE } },
+ { command: BhvCmds.or_int, args: { field: oFlags, value: OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW | OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE } },
+ { command: BhvCmds.load_collision_data, args: { data: inside_castle_seg7_collision_floor_trap  } },
+ { command: BhvCmds.begin_loop },
+      { command: BhvCmds.call_native, args: { func: bhv_floor_trap_in_castle_loop } },
+      //{ command: BhvCmds.call_native, args: { func: SurfaceLoad.load_object_collision_model, funcClass: SurfaceLoad } },
+ { command: BhvCmds.end_loop }
+]
+  
 
 const bhvBowser = []
 
