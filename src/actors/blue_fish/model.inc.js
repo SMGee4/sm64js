@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import * as Gbi from "../../include/gbi"
 // Blue Fish
+=======
+// Blue Fish
+import * as Gbi from "../../include/gbi"
+>>>>>>> origin/vanilla
 
 // 0x0301B5E0
 export const blue_fish_seg3_texture_0301B5E0 = []

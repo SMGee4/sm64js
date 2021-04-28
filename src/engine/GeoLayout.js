@@ -41,6 +41,11 @@ class GeoLayout {
     GEO_ANIMATED_PART(args) {this.node_animated_part(args)}
     GEO_CLOSE_NODE(args) {this.close_node(args)}
     GEO_END(args) {this.node_end(args)}
+<<<<<<< HEAD
+=======
+    GEO_SWITCH_CASE(args) {this.node_switch_case(args)}
+    GEO_DISPLAY_LIST(args) {this.display_list(args)}
+>>>>>>> origin/vanilla
 
     branch(args) {
         if (args[0] == 1) {

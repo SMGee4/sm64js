@@ -1,12 +1,29 @@
 import { ObjectListProcessorInstance as ObjListProc } from "../game/ObjectListProcessor"
 import { oFlags, OBJ_FLAG_UPDATE_GFX_POS_AND_ANGLE, oPosX, oPosY, oPosZ, oGraphYOffset, oFaceAnglePitch, oFaceAngleYaw, oFaceAngleRoll, oTimer, oPrevAction, oAction, oSubAction, oAnimations, oInteractType, oHomeX, oHomeY, oHomeZ, OBJ_FLAG_COMPUTE_DIST_TO_MARIO, oDistanceToMario, OBJ_FLAG_COMPUTE_ANGLE_TO_MARIO, oAngleToMario, oMoveAngleYaw, OBJ_FLAG_SET_FACE_YAW_TO_MOVE_YAW, oMoveFlags, OBJ_MOVE_ON_GROUND, oWallHitboxRadius, oGravity, oBounciness, oDragStrength, oFriction, oBuoyancy, oBehParams2ndByte, oRoom, OBJ_FLAG_ACTIVE_FROM_AFAR, oDrawingDistance, ACTIVE_FLAG_FAR_AWAY, oHeldState, HELD_FREE, OBJ_FLAG_MOVE_XZ_USING_FVEL } from "../include/object_constants"
 import { GRAPH_RENDER_CYLBOARD, geo_obj_init_animation, GRAPH_RENDER_BILLBOARD, GRAPH_RENDER_ACTIVE } from "./graph_node"
+<<<<<<< HEAD
 import { dist_between_objects, obj_angle_to_object, spawn_object_at_origin, obj_copy_pos_and_angle, cur_obj_scale, cur_obj_hide, cur_obj_move_xz_using_fvel_and_yaw } from "../game/ObjectHelpers"
 import { int32 } from "../utils"
 // for GOTOs
 // import { bhvFishSpawner } from "../game/BehaviorData"
 
 const obj_and_int = (object, field, value) => { object.rawData[field] &= int32(value) }
+=======
+import { dist_between_objects,
+         obj_angle_to_object,
+         spawn_object_at_origin,
+         obj_copy_pos_and_angle,
+         cur_obj_scale,
+         cur_obj_hide,
+         cur_obj_move_xz_using_fvel_and_yaw,
+         spawn_water_droplet                 } from "../game/ObjectHelpers"
+import { s16,
+         s32,
+         random_float } from "../utils"
+// import * as BehaviorData from "../game/BehaviorData"
+
+const obj_and_int = (object, field, value) => { object.rawData[field] &= s32(value) }
+>>>>>>> origin/vanilla
 
 class BehaviorCommands {
 
@@ -14,6 +31,40 @@ class BehaviorCommands {
         this.BHV_PROC_CONTINUE = 0
         this.BHV_PROC_BREAK    = 1
     }
+
+    ADD_INT(args) {return this.add_int({field: args[0], value: args[1]})}
+    ADD_FLOAT(args) {return this.add_number({field: args[0], value: args[1]})}
+    BEGIN(args) {return this.begin()}
+    BEGIN_LOOP(args) {return this.begin_loop()}
+    BEGIN_REPEAT(args) {return this.begin_repeat({count: args[0]})}
+    BILLBOARD(args) {return this.billboard()}
+    CALL(args) {return this.call({script: args[0]})}
+    CALL_NATIVE(args) {return this.call_native({func: args[0], funcClass: args[1]})}
+    DEACTIVATE(args) {return this.deactivate()}
+    DELAY(args) {return this.delay({num: args[0]})}
+    DELAY_VAR(args) {return this.delay_var({var: args[0]})}
+    DISABLE_RENDERING(args) {return this.disable_rendering()}
+    DROP_TO_FLOOR(args) {return this.drop_to_floor()}
+    END_LOOP(args) {return this.end_loop()}
+    END_REPEAT(args) {return this.end_repeat()}
+    END_REPEAT_CONTINUE(args) {return this.end_repeat_continue()}
+    GOTO(args) {return this.goto({script: args[0], index: args[1]})}
+    LOAD_ANIMATIONS(args) {return this.load_animations({field: args[0], anims: args[1]})}
+    LOAD_COLLISION_DATA(args) {return this.load_collision_data({data: args[0]})}
+    OR_INT(args) {return this.or_int({field: args[0], value: args[1]})}
+    PARENT_BIT_CLEAR(args) {return this.parent_bit_clear({field: args[0], value: args[1]})}
+    RETURN(args) {return this.return()}
+    SCALE(args) {return this.scale({percent: args[1]})}
+    SET_FLOAT(args) {return this.set_objectData_value({field: args[0], value: args[1]})}
+    SET_HOME(args) {return this.set_home()}
+    SET_INT(args) {return this.set_int({field: args[0], value: args[1]})}
+    SET_INTERACT_TYPE(args) {return this.set_interact_type({type: args[0]})}
+    SET_RANDOM_INT(args) {return this.set_random_int({field: args[0], minimum: args[1], range: args[2]})}
+    SET_RANDOM_FLOAT(args) {return this.set_random_float({field: args[0], minimum: args[1], range: args[2]})}
+    SUM_FLOAT(args) {return this.sum_float({dest: args[0], value1: args[1], value2: args[2]})}
+    SPAWN_CHILD(args) {return this.spawn_child_with_param({model: args[0], behavior: args[1], bhvParam: 0})}
+    SPAWN_WATER_DROPLET(args) {return this.cmd_spawn_water_droplet({params: args[1]})}
+
 
     random_sign() {
         return Math.random() > 0.5 ? 1 : -1
@@ -65,6 +116,13 @@ class BehaviorCommands {
             const bhvFunc = this.bhvScript.commands[this.bhvScript.index]
             if (Array.isArray(bhvFunc)) {
                 // new style of command: ['name', args, ...]
+<<<<<<< HEAD
+=======
+                if (!this[bhvFunc[0]]) {
+                    console.log(bhvFunc[0])
+                    throw "behavior command undefined"
+                }
+>>>>>>> origin/vanilla
                 bhvProcResult = this[bhvFunc[0]].call(this, bhvFunc.slice(1))
             } else {
                 bhvProcResult = bhvFunc.command.call(this, bhvFunc.args)
@@ -124,7 +182,15 @@ class BehaviorCommands {
         obj.header.gfx.angle[0] = obj.rawData[oFaceAnglePitch] & 0xFFFF
         obj.header.gfx.angle[1] = obj.rawData[oFaceAngleYaw] & 0xFFFF
         obj.header.gfx.angle[2] = obj.rawData[oFaceAngleRoll] & 0xFFFF
+    }
 
+
+// cmds
+    cmd_spawn_water_droplet(args) {
+        spawn_water_droplet(gCurrentObject, args.params)
+
+        this.bhvScript.index++
+        return this.BHV_PROC_CONTINUE
     }
 
     call_native(args) {
@@ -147,7 +213,7 @@ class BehaviorCommands {
     }
 
     delay_var(args) {
-        const num = parseInt(ObjListProc.gCurrentObject.rawData[args.var])
+        const num = s32(ObjListProc.gCurrentObject.rawData[args.var])
 
         if (ObjListProc.gCurrentObject.bhvDelayTimer < num - 1) {
             ObjListProc.gCurrentObject.bhvDelayTimer++
@@ -164,10 +230,23 @@ class BehaviorCommands {
         return this.BHV_PROC_BREAK
     }
 
+    add_int(args) {
+        ObjListProc.gCurrentObject.rawData[args.field] = s16(ObjListProc.gCurrentObject.rawData[args.field] + s16(args.value))
+        this.bhvScript.index++
+        return this.BHV_PROC_CONTINUE
+    }
+
     add_number(args) {
         ObjListProc.gCurrentObject.rawData[args.field] += args.value
         this.bhvScript.index++
         return this.BHV_PROC_CONTINUE
+    }
+
+    set_int(args) {
+        ObjListProc.gCurrentObject.rawData[args.field] = s16(args.value)
+        this.bhvScript.index++
+        return this.BHV_PROC_CONTINUE
+
     }
 
     set_objectData_value(args) {
@@ -177,13 +256,13 @@ class BehaviorCommands {
     }
 
     set_random_int(args) {
-        ObjListProc.gCurrentObject.rawData[args.field] = parseInt(Math.random() * args.range) + args.minimum
+        ObjListProc.gCurrentObject.rawData[args.field] = s32(args.range * random_float()) + args.minimum
         this.bhvScript.index++
         return this.BHV_PROC_CONTINUE
     }
 
     set_random_float(args) {
-        ObjListProc.gCurrentObject.rawData[args.field] = (Math.random() * args.range) + args.minimum
+        ObjListProc.gCurrentObject.rawData[args.field] = (args.range * random_float()) + args.minimum
         this.bhvScript.index++
         return this.BHV_PROC_CONTINUE
     }
@@ -273,7 +352,6 @@ class BehaviorCommands {
     }
 
     load_collision_data(args) {
-
         ObjListProc.gCurrentObject.collisionData = args.data
 
         this.bhvScript.index++
@@ -371,6 +449,15 @@ class BehaviorCommands {
     }
 
     end_repeat(args) {
+        return this.end_repeat_break_or_continue(this.BHV_PROC_BREAK)
+    }
+
+    end_repeat_continue(args) {
+        return this.end_repeat_break_or_continue(this.BHV_PROC_CONTINUE)
+    }
+
+    // helper
+    end_repeat_break_or_continue(which) {
         this.bhvScript.index++
         let count = ObjListProc.gCurrentObject.bhvStack.pop()
         count--
@@ -383,7 +470,7 @@ class BehaviorCommands {
             ObjListProc.gCurrentObject.bhvStack.pop()
         }
 
-        return this.BHV_PROC_BREAK
+        return which
     }
 
     begin_loop(args) {
@@ -408,7 +495,12 @@ class BehaviorCommands {
     }
 
     goto(args) {
+<<<<<<< HEAD
         this.bhvScript.commands = args.script
+=======
+        let script = BehaviorData[args.script]
+        this.bhvScript.commands = script
+>>>>>>> origin/vanilla
         this.bhvScript.index = args.index
         return this.BHV_PROC_CONTINUE
     }

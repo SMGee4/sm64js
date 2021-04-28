@@ -6,9 +6,15 @@ import { is_point_within_radius_of_mario, set_object_visibility } from "../ObjBe
 import {
     oPosX, oPosY, oPosZ, oVelX, oVelY, oVelZ, oMoveAngleYaw, oMoveAnglePitch,
     oBehParams2ndByte, oWallHitboxRadius, oDistanceToMario, oAngleToMario,
+<<<<<<< HEAD
     oTimer, oForwardVel
 } from "../../include/object_constants"
 import { oAction, oAnimState } from "../../include/object_constants"
+=======
+    oTimer, oForwardVel,
+    oAction, oAnimState
+} from "../../include/object_constants"
+>>>>>>> origin/vanilla
 import { 
     spawn_object, obj_init_animation_with_sound, obj_translate_xyz_random,
     cur_obj_resolve_wall_collisions, obj_mark_for_deletion, cur_obj_move_using_fvel_and_gravity,
