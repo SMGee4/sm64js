@@ -71,6 +71,7 @@ export const SURFACE_WOBBLING_WARP = 0x00FD
 export const SURFACE_FLAG_DYNAMIC          = (1 << 0)
 export const SURFACE_FLAG_NO_CAM_COLLISION = (1 << 1)
 export const SURFACE_FLAG_X_PROJECTION     = (1 << 3)
+export const SURFACE_TRAPDOOR = 0x00FF // Bowser Left trapdoor, has no action defined
 
 // Terrain types defined by the level script command terrain_type (cmd_31)
 export const TERRAIN_GRASS  = 0x0000

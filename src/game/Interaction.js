@@ -10,6 +10,7 @@ import { SURFACE_DEATH_PLANE, SURFACE_VERTICAL_WIND } from "../include/surface_t
 import { LEVEL_CCM, LEVEL_TTM, LEVEL_WF, LEVEL_HMC } from "../levels/level_defines_constants"
 import { COURSE_IS_MAIN_COURSE } from "../levels/course_defines"
 import { CameraInstance as Camera } from "./Camera"
+import { ACT_PUSHING_DOOR, ACT_PULLING_DOOR, ACT_WALKING, ACT_DECELERATING, ACT_ENTERING_STAR_DOOR } from "./Mario"
 
 export const INTERACT_HOOT           /* 0x00000001 */ = (1 << 0)
 export const INTERACT_GRABBABLE      /* 0x00000002 */ = (1 << 1)
@@ -181,6 +182,30 @@ const interact_coin = (m, o) => {
 
     return 0
 }
+
+// Interact Door also has "reqnumstarcount" "getsavefile" and of course text dialogs. There's a small percentage that this here isn't needed at the moment but still including anyway.
+const interact_door = (m, o) => {
+
+    if (m.action == ACT_WALKING || m.action == ACT_DECELERATING) {
+            m.actionArg = should_push_or_pull_door(m, o)
+            enterDoorAction
+
+            if (m.actionArg & 0x00000001) {
+                enterDoorAction = ACT_PULLING_DOOR
+            } else {
+                enterDoorAction = ACT_PUSHING_DOOR
+            }
+            m.interactObj = o
+            m.usedObj = o
+
+            if (o.rawData[oInteractionSubtype] & INT_SUBTYPE_STAR_DOOR) {
+                enterDoorAction = ACT_ENTERING_STAR_DOOR
+            }
+
+            return set_mario_action(m, enterDoorAction, actionArg)
+        }
+    }
+
 
 const interact_bounce_top = (m, o) => {
     let interaction 
@@ -634,7 +659,7 @@ const sInteractionHandlers = [
     { interactType: INTERACT_BBH_ENTRANCE, handler: null },
     { interactType: INTERACT_WARP, handler: null },
     { interactType: INTERACT_WARP_DOOR, handler: null },
-    { interactType: INTERACT_DOOR, handler: null },
+    { interactType: INTERACT_DOOR, handler: interact_door },
     { interactType: INTERACT_CANNON_BASE, handler: null },
     { interactType: INTERACT_IGLOO_BARRIER, handler: null },
     { interactType: INTERACT_TORNADO, handler: null },

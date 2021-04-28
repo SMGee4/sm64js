@@ -1,8 +1,8 @@
-import { WARP_TRANSITION_FADE_INTO_COLOR, WARP_TRANSITION_FADE_FROM_STAR } from "./Area"
+import { WARP_TRANSITION_FADE_INTO_COLOR, WARP_TRANSITION_FADE_FROM_STAR, WARP_TRANSITION_FADE_FROM_BOWSER, WARP_TRANSITION_FADE_INTO_BOWSER, WARP_TRANSITION_FADE_FROM_TROLL, WARP_TRANSITION_FADE_INTO_TROLL } from "./Area"
 import { GameInstance as Game } from "./Game"
 import * as Gbi from "../include/gbi"
 import { atan2s } from "../engine/math_util"
-import { dl_proj_mtx_fullscreen, dl_transition_draw_filled_region, texture_transition_star_half, dl_draw_quad_verts_0123, dl_screen_transition_end, matrix_identity, matrix_fullscreen } from "../common_gfx/segment2"
+import { dl_proj_mtx_fullscreen, dl_transition_draw_filled_region, texture_transition_star_half, dl_draw_quad_verts_0123, dl_screen_transition_end, matrix_identity, matrix_fullscreen, texture_transition_bowser_half, texture_transition_troll_half } from "../common_gfx/segment2"
 import { round_float, make_vertex } from "./GeoMisc"
 
 const canvas = document.querySelector('#gameCanvas')
@@ -11,6 +11,7 @@ const TEX_TRANS_STAR = 0
 const TEX_TRANS_CIRCLE = 1
 const TEX_TRANS_MARIO = 2
 const TEX_TRANS_BOWSER = 3
+const TEX_TRANS_TROLL = 4
 
 const TRANS_TYPE_MIRROR = 0
 const TRANS_TYPE_CLAMP = 1
@@ -19,7 +20,9 @@ const sTransitionColorFadeCount = [ 0,0,0,0 ]
 const sTransitionTextureFadeCount = [0, 0]
 
 const sTextureTransitionID = [
-	texture_transition_star_half
+	texture_transition_star_half,
+	texture_transition_bowser_half,
+	texture_transition_troll_half
 ]
 
 const set_and_reset_transition_fade_timer = (fadeTimer, transTime) => {
@@ -196,6 +199,14 @@ export const render_screen_transition = (fadeTimer, transType, transTime, transD
 			return render_fade_transition_into_color(fadeTimer, transTime, transData)
 		case WARP_TRANSITION_FADE_FROM_STAR:
 			return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_STAR, TRANS_TYPE_MIRROR)
-		default: throw "unknown transition type"
+    case WARP_TRANSITION_FADE_FROM_BOWSER:
+      return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR)
+    case WARP_TRANSITION_FADE_INTO_BOWSER:
+      return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_BOWSER, TRANS_TYPE_MIRROR)
+    case WARP_TRANSITION_FADE_INTO_TROLL:
+      return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_TROLL, TRANS_TYPE_MIRROR)
+    case WARP_TRANSITION_FADE_FROM_TROLL:
+      return render_textured_transition(fadeTimer, transTime, transData, TEX_TRANS_TROLL, TRANS_TYPE_MIRROR)
+      default: throw "unknown transition type"
 	}
 }

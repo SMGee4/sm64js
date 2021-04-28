@@ -1025,6 +1025,7 @@ export class n64GfxProcessor {
     run_dl(commands) {
 
         for (const command of commands) {
+
             const opcode = command.words.w0
             const args = command.words.w1
 

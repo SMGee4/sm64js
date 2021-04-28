@@ -6,6 +6,7 @@ import {
     COL_TRI,
     COL_TRI_STOP,
     COL_END,
+    SPECIAL_OBJECT_WITH_YAW,
 
     SURFACE_DEFAULT,
     SURFACE_VERY_SLIPPERY,
@@ -3745,12 +3746,10 @@ export const inside_castle_seg7_area_2_collision = [
     ...COL_TRI(38, 35, 33),
     ...COL_TRI(38, 37, 35),
     ...COL_TRI_STOP(),
-    /*
     ...COL_SPECIAL_INIT(4),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,  -2695, 1203,  1828,   64),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,   6994, 1203,  1828,   64),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,   1670, 1203,  1828,  192),
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,   -997, 1203,  1178,    0),
-    */
     ...COL_END(),
 ]

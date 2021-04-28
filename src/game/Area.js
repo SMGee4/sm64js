@@ -17,6 +17,8 @@ export const WARP_TRANSITION_FADE_INTO_CIRCLE  = 0x0B
 export const WARP_TRANSITION_FADE_INTO_MARIO   = 0x11
 export const WARP_TRANSITION_FADE_FROM_BOWSER  = 0x12
 export const WARP_TRANSITION_FADE_INTO_BOWSER = 0x13
+export const WARP_TRANSITION_FADE_INTO_TROLL = 0x16
+export const WARP_TRANSITION_FADE_FROM_TROLL = 0x17
 
 const D_8032CF00 = {  /// default view port?
     vscale: [640, 480, 511, 0],

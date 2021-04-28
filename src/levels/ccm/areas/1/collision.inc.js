@@ -36,6 +36,8 @@ import {
 
 } from "../../../../include/surface_terrains"
 
+import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM } from "../../../../include/special_presets"
+
 export const ccm_seg7_area_1_collision = [
     ...COL_INIT(),
     ...COL_VERTEX_INIT(0x299),
@@ -1804,7 +1806,7 @@ export const ccm_seg7_area_1_collision = [
     ...SPECIAL_OBJECT(special_snow_tree, -1146, -3583, 5919),
     ...SPECIAL_OBJECT(special_snow_tree, -1768, 2560, -1793),
     ...SPECIAL_OBJECT(special_snow_tree, -3443, 807, -2713),
-    //SPECIAL_OBJECT_WITH_YAW_AND_PARAM(preset special_wooden_door_warp, pos  2464, -4607, 4302, yaw 158, behParam2 20),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_wooden_door_warp, /*pos*/  2464, -4607, 4302, /*yaw*/ 158, /*behParam2*/ 20),
     ...COL_WATER_BOX_INIT(1),
     ...COL_WATER_BOX(0, 3137, 4228, 3925, 4945, -4638),
     ...COL_END(),

@@ -42,6 +42,6 @@ const door_seg3_animindex_03015654 = [
 export const door_seg3_anim_03015690 = {
     flags: 0, unk02: 0, unk04: 0, unk06: 0, unk08: 0x50,
     unk0A: (door_seg3_animindex_03015654.length / 6) - 1,
-    values: door_seg3_animvalue_03015220,
+    values: door_seg3_animvalue_03015470,
     indices:  door_seg3_animindex_03015654,
 }

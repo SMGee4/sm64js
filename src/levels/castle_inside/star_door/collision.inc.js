@@ -7,7 +7,9 @@ import {
     COL_TRI_STOP,
     COL_END,
 
-} from "../../include/surface_terrains"
+    SURFACE_DEFAULT
+
+} from "../../../include/surface_terrains"
 
 // Star Door
 

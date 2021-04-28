@@ -7,11 +7,11 @@ import {
     COL_TRI_STOP,
     COL_END,
 
-} from "../../include/surface_terrains"
+    SURFACE_DEFAULT
 
-// Trap Door
+} from "../../../include/surface_terrains"
 
-// 0x07078DE4 - 0x07078E14
+
 export const inside_castle_seg7_collision_floor_trap = [
     ...COL_INIT(),
     ...COL_VERTEX_INIT(0x4),

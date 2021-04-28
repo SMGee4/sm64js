@@ -29,8 +29,6 @@ export const level_castle_inside_2_entry = [
     { command: LevelCommands.set_mario_pos, args: [/*area*/ 2, /*yaw*/ 180, /*pos*/  -977, 1203, 2569,] },
     { command: LevelCommands.call, args: [0, LevelUpdate.lvl_init_or_update, LevelUpdate] },
     { command: LevelCommands.call_loop, args: [1, LevelUpdate.lvl_init_or_update, LevelUpdate] },
- // The different sets of star doors all use different model IDs, despite them all loading the same geo layout.
-    // It is possible that star doors were originally going to have numbers on them, similar to the other locked doors.
     { command: LevelCommands.load_model_from_geo, args: [MODEL_CASTLE_STAR_DOOR_50_STARS, castle_geo_000F00] },
     { command: LevelCommands.load_model_from_geo, args: [MODEL_CASTLE_STAR_DOOR_70_STARS, castle_geo_000F00] },
 ]
