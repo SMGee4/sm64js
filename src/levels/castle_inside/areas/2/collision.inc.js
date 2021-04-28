@@ -14,6 +14,7 @@ import {
     SURFACE_WALL_MISC
 } from "../../../../include/surface_terrains"
 
+import { special_0stars_door, special_wooden_door } from "../../../../include/special_presets"
 
 export const inside_castle_seg7_area_2_collision = [
     ...COL_INIT(),
@@ -3746,7 +3747,7 @@ export const inside_castle_seg7_area_2_collision = [
     ...COL_TRI(38, 35, 33),
     ...COL_TRI(38, 37, 35),
     ...COL_TRI_STOP(),
-    ...COL_SPECIAL_INIT(4),
+    //...COL_SPECIAL_INIT(4),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,  -2695, 1203,  1828,   64),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,   6994, 1203,  1828,   64),
     SPECIAL_OBJECT_WITH_YAW( special_0stars_door,   1670, 1203,  1828,  192),

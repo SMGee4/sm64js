@@ -15,6 +15,9 @@ import {
     SURFACE_NO_CAM_COLLISION,
     SURFACE_TRAPDOOR
 } from "../../../../include/surface_terrains"
+
+import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_castle_door_warp, special_0stars_door, special_1star_door, special_3star_door, special_wooden_door, special_wooden_door_warp } from "../../../../include/special_presets"
+
 export const inside_castle_seg7_area_1_collision = [
     ...COL_INIT(),
     ...COL_VERTEX_INIT(0x61B),
@@ -3760,15 +3763,15 @@ export const inside_castle_seg7_area_1_collision = [
     ...COL_SPECIAL_INIT(11),
     SPECIAL_OBJECT_WITH_YAW( special_null_start,         -1023,    0,  1152,  128), // unused, probably an early way to set intial position 
     */
-    SPECIAL_OBJECT_WITH_YAW( special_wooden_door,         -271,    0,  -824,   32),
-    SPECIAL_OBJECT_WITH_YAW( special_wooden_door,        -1775,    0,  -824,  224),
-    SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -1100,    0,  2202,    0,  0),
-    SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -946,     0,  2202,  128,  1),
-    SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_wooden_door_warp,   -1023, -101, -5170,    0,  2),
-    SPECIAL_OBJECT_WITH_YAW( special_0stars_door,        -3122,  205,  -793,   64),
-    SPECIAL_OBJECT_WITH_YAW( special_1star_door,           256,    0, -1074,    0),
-    SPECIAL_OBJECT_WITH_YAW( special_1star_door,           644,  614, -1476,  224),
-    SPECIAL_OBJECT_WITH_YAW( special_3star_door,          1075,  205,  -229,  192),
-    SPECIAL_OBJECT_WITH_YAW( special_3star_door,         -2303,    0, -1074,    0),
+    ...SPECIAL_OBJECT_WITH_YAW( special_wooden_door,         -271,    0,  -824,   32),
+    ...SPECIAL_OBJECT_WITH_YAW( special_wooden_door,        -1775,    0,  -824,  224),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -1100,    0,  2202,    0,  0),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -946,     0,  2202,  128,  1),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_wooden_door_warp,   -1023, -101, -5170,    0,  2),
+    ...SPECIAL_OBJECT_WITH_YAW( special_0stars_door,        -3122,  205,  -793,   64),
+    ...SPECIAL_OBJECT_WITH_YAW( special_1star_door,           256,    0, -1074,    0),
+    ...SPECIAL_OBJECT_WITH_YAW( special_1star_door,           644,  614, -1476,  224),
+    ...SPECIAL_OBJECT_WITH_YAW( special_3star_door,          1075,  205,  -229,  192),
+    ...SPECIAL_OBJECT_WITH_YAW( special_3star_door,         -2303,    0, -1074,    0),
     ...COL_END(),
 ]

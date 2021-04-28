@@ -61,6 +61,7 @@ export const MODEL_CASTLE_BOWSER_TRAP              = 0x35        // castle_geo_0
 export const MODEL_CASTLE_STAR_DOOR_50_STARS       = 0xD1        // castle_geo_000F00
 export const MODEL_UNKNOWN_DOOR_2A                 = 0x2A        // referenced in special presets, undefined
 export const MODEL_UNKNOWN_DOOR_2B                 = 0x2B        // referenced in special presets, undefined
+export const MODEL_UNKNOWN_AC                      = 0xAC        // according to an special preset, it was the original id of the castle floor trap
 export const MODEL_WF_TOWER_TRAPEZOID_PLATORM      = 0x2C        // wf_geo_000AF8 - unused
 export const MODEL_WF_TOWER_SQUARE_PLATORM         = 0x2D        // wf_geo_000B10
 export const MODEL_WF_TOWER_SQUARE_PLATORM_UNUSED  = 0x2E        // wf_geo_000B38 - unused & duplicated

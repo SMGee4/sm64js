@@ -20,6 +20,9 @@ import {
     SURFACE_PAINTING_WOBBLE_D0,
     SURFACE_WOBBLING_WARP,
 } from "../../../../include/surface_terrains"
+
+import { special_wooden_door, special_hmc_door, special_metal_door } from "../../../../include/special_presets"
+
 export const hmc_seg7_collision_level = [
     ...COL_INIT(),
     ...COL_VERTEX_INIT(0x5E1),
@@ -3619,7 +3622,7 @@ export const hmc_seg7_collision_level = [
     ...COL_TRI(55, 56, 57),
     ...COL_TRI(55, 58, 56),
     ...COL_TRI_STOP(),
-    ...COL_SPECIAL_INIT(13),
+    //...COL_SPECIAL_INIT(13),
     //SPECIAL_OBJECT_WITH_YAW( special_null_start,   -7601,  2253,  7630,   96), // unused, probably an early way to set intial position
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,    922, -4689,  2330,  192),
     SPECIAL_OBJECT_WITH_YAW( special_wooden_door,  -3586,  1536,   647,   19),
@@ -3633,9 +3636,10 @@ export const hmc_seg7_collision_level = [
     SPECIAL_OBJECT_WITH_YAW( special_metal_door,    3328,  -409, -6911,    0),
     SPECIAL_OBJECT_WITH_YAW( special_hmc_door,       358,  2048,  3661,  192),
     SPECIAL_OBJECT_WITH_YAW( special_hmc_door,     -6553,  1536,  1459,    0),
-    ...COL_WATER_BOX_INIT(3),
+    /*...COL_WATER_BOX_INIT(3),
     ...COL_WATER_BOX(0, -7628, -2559, 563, 7654, -4791),
     ...COL_WATER_BOX(50, 1690, -6348, 6298, 819, -818),
     ...COL_WATER_BOX(51, 1690, -6348, 6298, 819, -821),
+    */
     ...COL_END(),
 ]

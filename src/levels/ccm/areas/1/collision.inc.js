@@ -36,7 +36,7 @@ import {
 
 } from "../../../../include/surface_terrains"
 
-import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM } from "../../../../include/special_presets"
+import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_wooden_door_warp } from "../../../../include/special_presets"
 
 export const ccm_seg7_area_1_collision = [
     ...COL_INIT(),
@@ -1785,7 +1785,7 @@ export const ccm_seg7_area_1_collision = [
     ...COL_TRI(333, 610, 335),
     ...COL_TRI(336, 609, 616),
     ...COL_TRI_STOP(),
-    ...COL_SPECIAL_INIT(19),
+    //...COL_SPECIAL_INIT(19),
     //SPECIAL_OBJECT_WITH_YAW(preset special_null_start,       pos -1512, 2560, -2305, yaw 100), // unused, probably an early way to set intial position
     ...SPECIAL_OBJECT_WITH_YAW(special_level_geo_03,  -409, 2765, -1637, 0),
     ...SPECIAL_OBJECT_WITH_YAW(special_level_geo_04,  2355, -4095, 4096, 0),
@@ -1807,7 +1807,7 @@ export const ccm_seg7_area_1_collision = [
     ...SPECIAL_OBJECT(special_snow_tree, -1768, 2560, -1793),
     ...SPECIAL_OBJECT(special_snow_tree, -3443, 807, -2713),
     ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_wooden_door_warp, /*pos*/  2464, -4607, 4302, /*yaw*/ 158, /*behParam2*/ 20),
-    ...COL_WATER_BOX_INIT(1),
-    ...COL_WATER_BOX(0, 3137, 4228, 3925, 4945, -4638),
+    //...COL_WATER_BOX_INIT(1),
+    //...COL_WATER_BOX(0, 3137, 4228, 3925, 4945, -4638),
     ...COL_END(),
 ]
