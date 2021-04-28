@@ -16,8 +16,7 @@ export const special_unknown_door = 74
 export const special_unknown_5 = 73
 export const special_wooden_door_warp = 60
 export const special_metal_door_warp = 61
-export const special_castle_door_warp = 62
-export const special_haunted_door = 63
+export const special_haunted_door = 62
 
 export const SPTYPE_YROT_NO_PARAMS = 4
 export const SPTYPE_DEF_PARAM_AND_YROT = 7
@@ -28,7 +27,7 @@ export const SPTYPE_NO_YROT_OR_PARAMS = 9
 
 export const SpecialObjectPresets = new Array(470)
 
-SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
+SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_unknown_door_1E] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_1E, bhvDoor },
 SpecialObjectPresets[special_metal_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_HMC_METAL_DOOR, behavior: bhvDoor },
@@ -39,13 +38,13 @@ SpecialObjectPresets[special_0stars_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, m
 SpecialObjectPresets[special_1star_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_1_STAR, behavior: bhvDoor },
 SpecialObjectPresets[special_3stars_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_3_STARS, behavior: bhvDoor },
 SpecialObjectPresets[special_key_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_KEY_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_unknown_5] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_UNKNOWN_AC, behavior: bhvCastleFloorTrap }
-SpecialObjectPresets[special_castle_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, MODEL_CASTLE_CASTLE_DOOR }, // bhvDoorWarp },
+SpecialObjectPresets[special_unknown_5] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_UNKNOWN_AC, behavior: bhvCastleFloorTrap },
+SpecialObjectPresets[special_wooden_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, MODEL_WOODEN_DOOR}, // bhvDoorWarp },
 SpecialObjectPresets[special = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_WOODEN_DOOR }, // bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_28, bhvDoorWarp },
-SpecialObjectPresets[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_METAL_DOOR }, // bhvDoorWarp },
+SpecialObjectPresets[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_METAL_DOOR } // bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2A, bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2B, bhvDoorWarp }
 
 // Should probably not add the unused models.
-
+]
