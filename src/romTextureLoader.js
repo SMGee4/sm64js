@@ -912,7 +912,6 @@ const loadDataIntoGame = (data) => {
     segment2.texture_waterbox_lava.push(...data["textures/segment2/segment2.13C58.rgba16.png"].data)
 
     segment2.texture_transition_bowser_half.push(...data["textures/segment2/segment2.11458.ia8.png"].data)
-    segment2.texture_transition_troll_half.push(...data["troll/half.23431.ia8.png"].data)
 
     coin_seg3_texture_03005780.push(...data["actors/coin/coin_front.ia16.png"].data)
     coin_seg3_texture_03005F80.push(...data["actors/coin/coin_tilt_right.ia16.png"].data)

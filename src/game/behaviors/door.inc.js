@@ -1,8 +1,8 @@
 import { ObjectListProcessorInstance as ObjectListProc } from "../ObjectListProcessor"
 import { cur_obj_has_model, cur_obj_change_action, cur_obj_clear_interact_status_flag } from "../ObjectHelpers"
-import { oAction, oTimer, oPosX, oPosZ, oDoorUnkF8, oMoveAngleYaw, oDoorUnkFC, oDoorUnk100, oDoorUnk88 } from "../../include/object_constants"
+import { oAction, oTimer, oPosY, oPosX, oPosZ, oDoorUnkF8, oMoveAngleYaw, oDoorUnkFC, oDoorUnk100, oDoorUnk88 } from "../../include/object_constants"
 import { sins, coss } from "../../utils"
-
+ 
 /*export const door_animation_and_reset(s32 sp18) {
     cur_obj_init_animation_with_sound(sp18)
     if (cur_obj_check_if_near_animation_end())
@@ -70,11 +70,12 @@ export const bhv_door_loop = () => {
             //play_warp_door_open_noise()
             break
     }
+    
     if (o.rawData[oAction] == 0)
         load_object_collision_model()
     bhv_star_door_loop_2()
 } 
-//~hope cam event isn't important... 
+// ~hope cam event isn't important... 
 
 
  export const bhv_door_init = () => {

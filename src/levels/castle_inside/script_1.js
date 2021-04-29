@@ -13,7 +13,7 @@ import { castle_door_3_stars_geo } from "../../actors/door/geo.inc"
 import { key_door_geo } from "../../actors/door/geo.inc"
 import { castle_geo_000F00 } from "../../levels/castle_inside/star_door/geo.inc"
 import { castle_geo_000F18 } from "../../levels/castle_inside/trap_door/geo.inc"
-import { MODEL_CASTLE_KEY_DOOR, MODEL_CASTLE_STAR_DOOR_8_STARS, MODEL_CASTLE_DOOR_3_STARS, MODEL_CASTLE_DOOR_1_STAR, MODEL_CASTLE_CASTLE_DOOR, MODEL_CASTLE_WOODEN_DOOR, MODEL_CASTLE_METAL_DOOR, MODEL_CASTLE_DOOR_0_STARS, MODEL_CASTLE_BOWSER_TRAP } from "../../include/model_ids"
+import { MODEL_CASTLE_KEY_DOOR, MODEL_CASTLE_STAR_DOOR_8_STARS, MODEL_CASTLE_DOOR_3_STARS, MODEL_CASTLE_DOOR_1_STAR, MODEL_CASTLE_CASTLE_DOOR, MODEL_CASTLE_WOODEN_DOOR, MODEL_CASTLE_METAL_DOOR, MODEL_CASTLE_DOOR_0_STARS, MODEL_CASTLE_BOWSER_TRAP, MODEL_NONE } from "../../include/model_ids"
 //import { MODEL_CASTLE_STAR_DOOR_30_STARS } from "../../include/model_ids" ( for basment ) 
 
 export const script_func_local_1 = [
