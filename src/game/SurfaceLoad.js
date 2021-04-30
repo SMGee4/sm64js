@@ -1,5 +1,6 @@
 import * as Surfaces from "../include/surface_terrains"
 import { spawn_special_objects, spawn_macro_objects } from "./MacroSpecialObjects"
+import { spawn_special_preset_objects } from "../include/special_presets"
 import { ObjectListProcessorInstance as ObjectListProc } from "./ObjectListProcessor"
 import { oDistanceToMario, oCollisionDistance, oDrawingDistance, ACTIVE_FLAG_IN_DIFFERENT_ROOM, oPosX, oFaceAnglePitch } from "../include/object_constants"
 import { GRAPH_RENDER_ACTIVE } from "../engine/graph_node"
@@ -288,6 +289,57 @@ class SurfaceLoad {
         if (macroObjects) {
             if (macroObjects[0].preset < 30) throw "spawn objects shortcut method?"
             else spawn_macro_objects(index, macroObjects)
+        } 
+
+        this.gNumStaticSurfaceNodes = this.gSurfaceNodesAllocated
+        this.gNumStaticSurfaces = this.gSurfacesAllocated
+
+    }
+
+
+    // I probably didn't have to duplicate the entire load_area_terrain...
+
+    load_area_terrain(index, data, surfaceRooms, specialObjects) {
+
+        if (surfaceRooms) surfaceRooms = { index: 0, surfaceRooms }
+
+        this.gTerrainData = data  /// TODO refactor our function args to data, because we are storing it as a class variable
+
+        let dataIndex = 0
+        let vertexDataIndex = 0
+
+        this.gSurfaceNodesAllocated = 0
+        this.gSurfacesAllocated = 0
+
+        while (dataIndex < data.length) {
+
+            const terrainLoadType = data[dataIndex]
+            dataIndex++
+
+            if (terrainLoadType < 0x40) { //TERRAIN_LOAD_IS_SURFACE_TYPE_LOW
+                dataIndex = this.load_static_surfaces(data, dataIndex, vertexDataIndex, terrainLoadType, surfaceRooms)
+            } else if (terrainLoadType == Surfaces.TERRAIN_LOAD_VERTICES) {
+                const newIdx = this.read_vertex_data(data, dataIndex, vertexDataIndex)
+                dataIndex = newIdx.dataIndex
+                vertexDataIndex = newIdx.vertexDataIndex
+            }
+            else if (terrainLoadType == Surfaces.TERRAIN_LOAD_OBJECTS) {
+                dataIndex = spawn_special_preset_objects(index, data, dataIndex)
+            }
+            else if (terrainLoadType == Surfaces.TERRAIN_LOAD_ENVIRONMENT) {
+                dataIndex = this.load_environmental_regions(dataIndex)
+            }
+            else if (terrainLoadType == Surfaces.TERRAIN_LOAD_CONTINUE) continue
+            else if (terrainLoadType == Surfaces.TERRAIN_LOAD_END) break
+            else if (terrainLoadType > 0x65) { //TERRAIN_LOAD_IS_SURFACE_TYPE_HIGH
+                dataIndex = this.load_static_surfaces(data, dataIndex, vertexDataIndex, terrainLoadType, surfaceRooms)
+                continue
+            }
+        }
+
+        if (specialObjects) {
+            if (specialObjects[0].preset < 30) throw "spawn objects shortcut method?"
+            else spawn_special_preset_objects(index, specialObjects)
         } 
 
         this.gNumStaticSurfaceNodes = this.gSurfaceNodesAllocated
