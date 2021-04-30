@@ -1,5 +1,39 @@
 import { MODEL_CASTLE_WOODEN_DOOR_UNUSED, MODEL_WOODEN_DOOR, MODEL_BBH_HAUNTED_DOOR, MODEL_HMC_WOODEN_DOOR, MODEL_UNKNOWN_DOOR_1E, MODEL_HMC_METAL_DOOR, MODEL_CASTLE_DOOR_0_STARS, MODEL_UNKNOWN_DOOR_2A, MODEL_CASTLE_STAR_DOOR_8_STARS, MODEL_CASTLE_STAR_DOOR_70_STARS, MODEL_UNKNOWN_DOOR_21, MODEL_CASTLE_DOOR_1_STAR, MODEL_CASTLE_DOOR_3_STARS, MODEL_CASTLE_KEY_DOOR, MODEL_CASTLE_CASTLE_DOOR, MODEL_CASTLE_CASTLE_DOOR_UNUSED, MODEL_HMC_HAZY_MAZE_DOOR, MODEL_CASTLE_WOODEN_DOOR, MODEL_COURTYARD_WOODEN_DOOR, MODEL_CCM_CABIN_DOOR, MODEL_UNKNOWN_DOOR_28, MODEL_CASTLE_METAL_DOOR, MODEL_UNKNOWN_DOOR_2B, MODEL_CASTLE_STAR_DOOR_30_STARS, MODEL_CASTLE_STAR_DOOR_50_STARS, MODEL_CASTLE_GROUNDS_CASTLE_DOOR, MODEL_CASTLE_GROUNDS_METAL_DOOR, MODEL_CASTLE_BOWSER_TRAP, MODEL_UNKNOWN_AC } from "../include/model_ids"
 import { bhvDoor, bhvCastleFloorTrap } from "../game/BehaviorData"
+import { ObjectListProcessorInstance as ObjectListProc } from "../game/ObjectListProcessor"
+
+// Apparently I need something like this, but I don't think this needs to be here
+export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
+    const numOfSpecialObjects = specialObjList[dataIndex++]
+
+    ObjectListProc.gMacroObjectDefaultParent = { header: { gfx: { unk18: areaIndex, unk19: areaIndex } } }
+
+    for (let i = 0; i < numOfSpecialObjects; i++) {
+        const presetID = specialObjList[dataIndex++]
+
+        const { model, behavior, type, defParam } = SpecialObjectPresets[presetID]
+
+        switch (type) {
+            case SPTYPE_NO_YROT_OR_PARAMS:
+                spawn_special_object_presets(defParam, model, behavior)
+                break
+            case SPTYPE_YROT_NO_PARAMS:
+                spawn_special_object_presets(defParam, model, behavior)
+                break
+                case SPTYPE_NO_YROT_OR_PARAMS:
+                spawn_special_object_presets(model, behavior)
+                break
+            case SPTYPE_DEF_PARAM_AND_YROT:
+                spawn_special_object_presets(model, behavior)
+                break
+            default: throw "unkown special object type"
+        }
+
+    }
+
+    return dataIndex
+}
+
 
 export const SPECIAL_OBJECT_WITH_YAW_AND_PARAM = (preset, posX, posY, posZ, yaw, param) => {
     return [preset, posX, posY, posZ, yaw, param]
@@ -36,7 +70,7 @@ export const SPTYPE_PARAMS_AND_YROT = 10
 
 export const SpecialObjectPresets = new Array(680)
 
-SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
+SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_unknown_door_1E] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_1E, bhvDoor },
 SpecialObjectPresets[special_metal_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_HMC_METAL_DOOR, behavior: bhvDoor },
