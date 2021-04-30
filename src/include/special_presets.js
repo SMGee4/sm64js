@@ -4,7 +4,7 @@ import { ObjectListProcessorInstance as ObjectListProc } from "../game/ObjectLis
 import { spawn_object_abs_with_rot } from "../game/ObjectHelpers"
 import { oBehParams, RESPAWN_INFO_DONT_RESPAWN, oUnk1A8, oBehParams2ndByte, RESPAWN_INFO_TYPE_16 } from "../include/object_constants"
 import { uint16, int16 } from "../utils"
-
+import { TERRAIN_LOAD_OBJECTS } from "./surface_terrains"
 // Apparently I need something like this, but I don't think this needs to be here. Lol i just replaced the word macro with special
 const convert_rotation = (inRotation) => {
     let rotation = uint16(inRotation & 0xFF)
