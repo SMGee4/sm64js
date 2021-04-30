@@ -1,12 +1,46 @@
 import { MODEL_CASTLE_WOODEN_DOOR_UNUSED, MODEL_WOODEN_DOOR, MODEL_BBH_HAUNTED_DOOR, MODEL_HMC_WOODEN_DOOR, MODEL_UNKNOWN_DOOR_1E, MODEL_HMC_METAL_DOOR, MODEL_CASTLE_DOOR_0_STARS, MODEL_UNKNOWN_DOOR_2A, MODEL_CASTLE_STAR_DOOR_8_STARS, MODEL_CASTLE_STAR_DOOR_70_STARS, MODEL_UNKNOWN_DOOR_21, MODEL_CASTLE_DOOR_1_STAR, MODEL_CASTLE_DOOR_3_STARS, MODEL_CASTLE_KEY_DOOR, MODEL_CASTLE_CASTLE_DOOR, MODEL_CASTLE_CASTLE_DOOR_UNUSED, MODEL_HMC_HAZY_MAZE_DOOR, MODEL_CASTLE_WOODEN_DOOR, MODEL_COURTYARD_WOODEN_DOOR, MODEL_CCM_CABIN_DOOR, MODEL_UNKNOWN_DOOR_28, MODEL_CASTLE_METAL_DOOR, MODEL_UNKNOWN_DOOR_2B, MODEL_CASTLE_STAR_DOOR_30_STARS, MODEL_CASTLE_STAR_DOOR_50_STARS, MODEL_CASTLE_GROUNDS_CASTLE_DOOR, MODEL_CASTLE_GROUNDS_METAL_DOOR, MODEL_CASTLE_BOWSER_TRAP, MODEL_UNKNOWN_AC } from "../include/model_ids"
 import { bhvDoor, bhvCastleFloorTrap } from "../game/BehaviorData"
 import { ObjectListProcessorInstance as ObjectListProc } from "../game/ObjectListProcessor"
+import { spawn_object_abs_with_rot } from "../game/ObjectHelpers"
+import { oBehParams, RESPAWN_INFO_DONT_RESPAWN, oUnk1A8, oBehParams2ndByte, RESPAWN_INFO_TYPE_16 } from "../include/object_constants"
+import { uint16, int16 } from "../utils"
 
-// Apparently I need something like this, but I don't think this needs to be here
+// Apparently I need something like this, but I don't think this needs to be here. Lol i just replaced the word macro with special
+const convert_rotation = (inRotation) => {
+    let rotation = uint16(inRotation & 0xFF)
+    rotation <<= 8
+
+    if (rotation == 0x3F00) {
+        rotation = 0x4000
+    }
+
+    if (rotation == 0x7F00) {
+        rotation = 0x8000
+    }
+
+    if (rotation == 0xBF00) {
+        rotation = 0xC000
+    }
+
+    if (rotation == 0xFF00) {
+        rotation = 0x0000
+    }
+
+    return int16(rotation)
+}
+
+const spawn_special_object_presets = (model, behavior, params) => {
+    if (behavior) {
+        const newObj = spawn_object_abs_with_rot(ObjectListProc.gSpecialObjectDefaultParent,
+            model, behavior)
+        newObj.rawData[oBehParams] = params << 16
+    } else throw "no behavior - no point in this object existing?"
+}
+
 export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
     const numOfSpecialObjects = specialObjList[dataIndex++]
 
-    ObjectListProc.gMacroObjectDefaultParent = { header: { gfx: { unk18: areaIndex, unk19: areaIndex } } }
+    ObjectListProc.gSpecialObjectDefaultParent = { header: { gfx: { unk18: areaIndex, unk19: areaIndex } } }
 
     for (let i = 0; i < numOfSpecialObjects; i++) {
         const presetID = specialObjList[dataIndex++]
@@ -34,9 +68,45 @@ export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
     return dataIndex
 }
 
+export const spawn_special__preset_objects = (areaIndex, specialObjList) => {
+    ObjectListProc.gSpecialObjectDefaultParent.header.gfx.unk18 = areaIndex
+    ObjectListProc.gSpecialObjectDefaultParent.header.gfx.unk19 = areaIndex
+
+    specialObjList.forEach(objToSpawn => {
+        const presetID = objToSpawn.preset
+
+        const specialObject = {
+            obj_y_rot: objToSpawn.yaw * 2 * 0x10 / 45,
+            obj_pos: objToSpawn.pos,
+            obj_param: objToSpawn.param
+        }
+
+        const preset = SpecialObjectPresets[presetID]
+
+        specialObject.obj_param = (specialObject.obj_param & 0xFF00) + (preset.param & 0x00FF)
+
+        if (((specialObject.obj_param >> 8) & RESPAWN_INFO_DONT_RESPAWN) != RESPAWN_INFO_DONT_RESPAWN) {
+            const newObj = spawn_object_abs_with_rot(ObjectListProc.gSpecialObjectDefaultParent, preset.model, preset.behavior,
+                specialObject.obj_pos[0], specialObject.obj_pos[1], specialObject.obj_pos[2], 0, convert_rotation(specialObject.obj_y_rot), 0)
+
+            newObj.rawData[oUnk1A8] = specialObject.obj_param
+            newObj.rawData[oBehParams] = ((specialObject.obj_param & 0x00FF) << 16) + (specialObject.obj_param & 0xFF00)
+            newObj.rawData[oBehParams2ndByte] = specialObject.obj_param & 0x00FF
+            newObj.respawnInfoType = RESPAWN_INFO_TYPE_16
+            newObj.respawnInfo = specialObject.obj_param
+            newObj.parentObj = newObj
+        }
+
+    })
+}
+
 
 export const SPECIAL_OBJECT_WITH_YAW_AND_PARAM = (preset, posX, posY, posZ, yaw, param) => {
     return [preset, posX, posY, posZ, yaw, param]
+}
+export const COL_SPECIAL_INIT = (num) => { return [TERRAIN_LOAD_OBJECTS, num] }
+export const SPECIAL_OBJECT_WITH_YAW = (preset, posX, posY, posZ, yaw) => {
+    return [preset, posX, posY, posZ, yaw]
 }
 
 // Not even sure if this is required or needs to be here...
