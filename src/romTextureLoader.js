@@ -427,7 +427,7 @@ import {
 const url = new URL(window.location.href)
 const msgElement = document.getElementById('romMessage')
 let loadedGameAssets = false
-const textureVersion = 48
+const textureVersion = 40
 
 const loadDataIntoGame = (data) => {
 

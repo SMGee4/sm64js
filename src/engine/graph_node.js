@@ -559,7 +559,7 @@ export const register_scene_graph_node = (g, graphNode) => {
             if (g.gCurRootGraphNode == null) g.gCurRootGraphNode = graphNode
         } else {
             if (g.gCurGraphNodeList[g.gCurGraphNodeIndex - 1].type == GRAPH_NODE_TYPE_OBJECT_PARENT) {
-                g.gCurGraphNodeList[g.gCurGraphNodeIndex - 1].sharedChild = graphNode
+                sharedChild = graphNode
             } else {
                 geo_add_child(g.gCurGraphNodeList[g.gCurGraphNodeIndex - 1].node, graphNode.node)
             }

@@ -306,6 +306,13 @@ class ObjectListProcessor {
 
         Spawn.clear_object_lists()
         Spawn.SurfaceLoad.clear_dynamic_surfaces()
+        /*
+        ObjListProc.gMarioObject = null
+        ObjListProc.gMarioCurrentRoom = 0  
+        gDoorAdjacentRooms[0] = 0
+        gDoorAdjacentRooms[1] = 0
+        Might need these soon ~ SMGee4, I think they belong here...
+        */ 
     }
 }
 

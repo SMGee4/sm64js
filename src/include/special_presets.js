@@ -31,10 +31,10 @@ export const SPTYPE_DEF_PARAM_AND_YROT = 7
 export const SPTYPE_NO_YROT_OR_PARAMS = 9
 export const SPTYPE_PARAMS_AND_YROT = 10
 
-//They're pretty much made up random values...
+//They're all pretty much made up random values...
 
 
-export const SpecialObjectPresets = new Array(470)
+export const SpecialObjectPresets = new Array(680)
 
 SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },

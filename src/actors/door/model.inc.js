@@ -694,4 +694,3 @@ export const door_seg3_dl_03015158 = [
 	Gbi.gsSPLight(door_seg3_lights_03009CF8.a, 2),
 	Gbi.gsSPBranchList(door_seg3_dl_03014F30),
 ]
-

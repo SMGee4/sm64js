@@ -1,6 +1,5 @@
 import { GeoLayoutInstance as Geo } from "../../engine/GeoLayout"
-import { door_seg3_dl_03014A80, door_seg3_dl_03014540, door_seg3_dl_03013E28, door_seg3_dl_03013EA8, door_seg3_dl_03014100, door_seg3_dl_03014128, door_seg3_dl_03014250, door_seg3_dl_03014280, door_seg3_dl_030142B0, door_seg3_dl_030142E0, door_seg3_dl_03014310, door_seg3_dl_03014340, door_seg3_dl_03014470, door_seg3_dl_030144E0, door_seg3_dl_03014528, door_seg3_dl_03014B30, door_seg3_dl_03014BE0, door_seg3_dl_03014C90, door_seg3_dl_03014D40, door_seg3_dl_03014F98, door_seg3_dl_03015008, door_seg3_dl_03015078, door_seg3_dl_030150E8, door_seg3_dl_03015158
-} from "../../actors/door/model.inc"
+import { door_seg3_dl_03014A80, door_seg3_dl_03014540, door_seg3_dl_03013E28, door_seg3_dl_03013EA8, door_seg3_dl_03014100, door_seg3_dl_03014128, door_seg3_dl_03014250, door_seg3_dl_03014280, door_seg3_dl_030142B0, door_seg3_dl_030142E0, door_seg3_dl_03014310, door_seg3_dl_03014340, door_seg3_dl_03014528, door_seg3_dl_03014B30, door_seg3_dl_03014BE0, door_seg3_dl_03014C90, door_seg3_dl_03014D40, door_seg3_dl_03014F98, door_seg3_dl_03015008, door_seg3_dl_03015078, door_seg3_dl_030150E8, door_seg3_dl_03015158 } from "../../actors/door/model.inc"
 
 
 export const castle_door_geo = [
