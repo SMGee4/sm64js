@@ -6,7 +6,7 @@ import { oBehParams, RESPAWN_INFO_DONT_RESPAWN, oUnk1A8, oBehParams2ndByte, RESP
 import { uint16, int16 } from "../utils"
 import { TERRAIN_LOAD_OBJECTS } from "./surface_terrains"
 // Apparently I need something like this, but I don't think this needs to be here. Lol i just replaced the word macro with special
-/*export const convert_rotation = (inRotation) => {
+export const convert_rotation = (inRotation) => {
     let rotation = uint16(inRotation & 0xFF)
     rotation <<= 8
 
@@ -95,14 +95,14 @@ export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
             newObj.respawnInfoType = RESPAWN_INFO_TYPE_16
             newObj.respawnInfo = specialObject.obj_param
             newObj.parentObj = newObj
-            
+            */
             
         }
 
     })
 }
-*/
 
+/*
 const convert_rotation = (inRotation) => {
     let rotation = uint16(inRotation & 0xFF)
     rotation <<= 8
@@ -192,8 +192,9 @@ export const spawn_macro_objects = (areaIndex, macroObjList) => {
             newObj.parentObj = newObj
         }
 
-    })
+   })
 }
+*/
 
 
 export const SPECIAL_OBJECT_WITH_YAW_AND_PARAM = (preset, posX, posY, posZ, yaw, param) => {
