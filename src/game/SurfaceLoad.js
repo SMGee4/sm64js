@@ -299,7 +299,7 @@ class SurfaceLoad {
 
     // I probably didn't have to duplicate the entire load_area_terrain...
 
-    /*load_area_terrain(index, data, surfaceRooms, specialObjects) {
+    load_area_terrain(index, data, surfaceRooms, specialObjects) {
 
         if (surfaceRooms) surfaceRooms = { index: 0, surfaceRooms }
 
@@ -346,7 +346,6 @@ class SurfaceLoad {
         this.gNumStaticSurfaces = this.gSurfacesAllocated
 
     }
-    */
 
     clear_dynamic_surfaces() {
         if (!(ObjectListProc.gTimeStopState & ObjectListProc.TIME_STOP_ACTIVE)) {

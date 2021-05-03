@@ -83,11 +83,11 @@ export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
 
         //const preset = SpecialPresetObjects[presetID]
 
-       //specialObject.obj_param = (specialObject.obj_param & 0xFF00) + (preset.param & 0x00FF)
+       specialObject.obj_param = (specialObject.obj_param & 0xFF00) + (preset.param & 0x00FF)
 
         if (((specialObject.obj_param >> 8) & RESPAWN_INFO_DONT_RESPAWN) != RESPAWN_INFO_DONT_RESPAWN) {
-            const newObj = spawn_object_abs_with_rot//(ObjectListProc.gMacroObjectDefaultParent, preset.model, preset.behavior,
-                /*specialObject.obj_pos[0], specialObject.obj_pos[1], specialObject.obj_pos[2], 0, convert_rotation(specialObject.obj_y_rot), 0)
+            const newObj = spawn_object_abs_with_rot(//ObjectListProc.gMacroObjectDefaultParent, preset.model, preset.behavior,
+                specialObject.obj_pos[0], specialObject.obj_pos[1], specialObject.obj_pos[2], 0, convert_rotation(specialObject.obj_y_rot), 0)
 
             newObj.rawData[oUnk1A8] = specialObject.obj_param
             newObj.rawData[oBehParams] = ((specialObject.obj_param & 0x00FF) << 16) + (specialObject.obj_param & 0xFF00)
@@ -95,7 +95,6 @@ export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
             newObj.respawnInfoType = RESPAWN_INFO_TYPE_16
             newObj.respawnInfo = specialObject.obj_param
             newObj.parentObj = newObj
-            */
             
         }
 

@@ -18,6 +18,7 @@ import {
     special_wooden_door_unused,
     special_wooden_door_warp,
     */
+    //special_haunted_door,
     special_bubble_tree,
     special_snow_tree,
     special_level_geo_03,
@@ -43,6 +44,7 @@ import {
 } from "../include/surface_terrains"
 
 import {
+    //MODEL_BBH_HAUNTED_DOOR,
     MODEL_BOB_BUBBLY_TREE,
     MODEL_CCM_SNOW_TREE,
     MODEL_LEVEL_GEOMETRY_03,
@@ -83,6 +85,7 @@ const SPTYPE_DEF_PARAM_AND_YROT = 4 // object is 10-bytes long, has y-rotation a
 
 const SpecialObjectPresets = {}
 
+//SpecialObjectPresets[special_haunted_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_BBH_HAUNTED_DOOR, behavior: bhvDoor },
 /*
 SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },
