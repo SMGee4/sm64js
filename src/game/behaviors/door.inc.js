@@ -4,7 +4,7 @@ import { oAction, oTimer, oPosY, oPosX, oPosZ, oDoorUnkF8, oMoveAngleYaw, oDoorU
 import { sins, coss } from "../../utils"
 import { SurfaceCollisionInstance as SurfaceCollision } from "../../engine/SurfaceCollision" 
 import { SurfaceLoadInstance } from "../SurfaceLoad"
-import { GRAPH_RENDER_ACTIVE } from "../engine/graph_node"
+import { GRAPH_RENDER_ACTIVE } from "../../engine/graph_node"
 
 /*export const door_animation_and_reset(s32 sp18) {
     cur_obj_init_animation_with_sound(sp18)
