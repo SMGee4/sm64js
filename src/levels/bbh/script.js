@@ -4,14 +4,14 @@ import { LevelUpdateInstance as LevelUpdate } from "../../game/LevelUpdate"
 import { bbh_seg7_collision_level } from "./areas/1/collision.inc"
 import { bbh_seg7_rooms } from "./areas/1/room.inc"
 import { geo_bbh_000F00 } from "./areas/1/geo.inc"
-//import { haunted_door_geo } from "../../actors/door/geo.inc"
-//import { MODEL_BBH_HAUNTED_DOOR } from "../../include/model_ids"
+import { haunted_door_geo } from "../../actors/door/geo.inc"
+import { MODEL_BBH_HAUNTED_DOOR } from "../../include/model_ids"
 
 export const level_bbh_entry = [
     { command: LevelCommands.init_level },
     { command: LevelCommands.init_mario, args: [1, 1, bhvMario] },
     { command: LevelCommands.begin_area, args: [1, geo_bbh_000F00] },
-    //{ command: LevelCommands.load_model_from_geo, args: [MODEL_BBH_HAUNTED_DOOR, haunted_door_geo] },
+    { command: LevelCommands.load_model_from_geo, args: [MODEL_BBH_HAUNTED_DOOR, haunted_door_geo] },
     { command: LevelCommands.terrain, args: [bbh_seg7_collision_level] },
     { command: LevelCommands.rooms, args: [bbh_seg7_rooms] },
     { command: LevelCommands.end_area },

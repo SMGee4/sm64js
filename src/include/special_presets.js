@@ -31,7 +31,7 @@ const convert_rotation = (inRotation) => {
 
 const spawn_special_object_presets = (model, behavior, params) => {
     if (behavior) {
-        const newObj = spawn_object_abs_with_rot(//ObjectListProc.gMacroObjectDefaultParent,
+        const newObj = spawn_object_abs_with_rot(//ObjectListProc.gSpecialObjectDefaultParent,
             model, behavior)
         newObj.rawData[oBehParams] = params << 16
     } else throw "no behavior - no point in this object existing?"
@@ -40,12 +40,12 @@ const spawn_special_object_presets = (model, behavior, params) => {
 export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
     const numOfSpecialObjects = specialObjList[dataIndex++]
 
-    //ObjectListProc.gMacroObjectDefaultParent = { header: { gfx: { unk18: areaIndex, unk19: areaIndex } } }
+    //ObjectListProc.gSpecialObjectDefaultParent = { header: { gfx: { unk18: areaIndex, unk19: areaIndex } } }
 
     for (let i = 0; i < numOfSpecialObjects; i++) {
         const presetID = specialObjList[dataIndex++]
 
-        const { model, behavior, type, defParam } = SpecialObjectPresets[presetID]
+        const { model, behavior, type, defParam } = SpecialPresetObjects[presetID]
 
         switch (type) {
             case SPTYPE_NO_YROT_OR_PARAMS:
@@ -69,8 +69,8 @@ export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
 }
 
 export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
-    //ObjectListProc.gMacroObjectDefaultParent.header.gfx.unk18 = areaIndex
-    //ObjectListProc.gMacroObjectDefaultParent.header.gfx.unk19 = areaIndex
+    //ObjectListProc.gSpecialObjectDefaultParent.header.gfx.unk18 = areaIndex
+    //ObjectListProc.gSpecialObjectDefaultParent.header.gfx.unk19 = areaIndex
 
     specialObjList.forEach(objToSpawn => {
         const presetID = objToSpawn.preset
@@ -81,7 +81,7 @@ export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
             obj_param: objToSpawn.param
         }
 
-        //const preset = SpecialObjectPresets[presetID]
+        //const preset = SpecialPresetObjects[presetID]
 
        //specialObject.obj_param = (specialObject.obj_param & 0xFF00) + (preset.param & 0x00FF)
 
@@ -96,6 +96,7 @@ export const spawn_special_preset_objects = (areaIndex, specialObjList) => {
             newObj.respawnInfo = specialObject.obj_param
             newObj.parentObj = newObj
             */
+            
         }
 
     })
@@ -139,25 +140,25 @@ export const SPTYPE_PARAMS_AND_YROT = 10
 //They're all pretty much made up random values...
 
 
-export const SpecialObjectPresets = new Array(680)
+const SpecialPresetObjects = {}
 
-SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, model: MODEL_CASTLE_CASTLE_DOOR,  defParam: 0, behavior: bhvDoor },
+SpecialPresetObjects[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_unknown_door_1E] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_1E, bhvDoor },
-SpecialObjectPresets[special_metal_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_HMC_METAL_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_hmc_door] = { type: SPTYPE_YROT_NO_PARAMS, model: MODEL_HMC_HAZY_MAZE_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_unknown_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_21, behavior: bhvDoor },
-SpecialObjectPresets[special_haunted_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_BBH_HAUNTED_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_wooden_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_0stars_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_0_STARS, behavior: bhvDoor },
-SpecialObjectPresets[special_1star_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_1_STAR, behavior: bhvDoor },
-SpecialObjectPresets[special_3star_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_3_STARS, behavior: bhvDoor },
-SpecialObjectPresets[special_key_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_KEY_DOOR, behavior: bhvDoor },
-SpecialObjectPresets[special_unknown_5] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_UNKNOWN_AC, behavior: bhvCastleFloorTrap },
-SpecialObjectPresets[special_wooden_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_WOODEN_DOOR }, // bhvDoorWarp },
-SpecialObjectPresets[special_castle_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_CASTLE_DOOR }, // bhvDoorWarp },
+SpecialPresetObjects[special_metal_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_HMC_METAL_DOOR, behavior: bhvDoor },
+SpecialPresetObjects[special_hmc_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_HMC_HAZY_MAZE_DOOR, behavior: bhvDoor },
+SpecialPresetObjects[special_unknown_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_21, behavior: bhvDoor },
+SpecialPresetObjects[special_haunted_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_BBH_HAUNTED_DOOR, behavior: bhvDoor },
+SpecialPresetObjects[special_wooden_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR, behavior: bhvDoor },
+SpecialPresetObjects[special_0stars_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_0_STARS, behavior: bhvDoor },
+SpecialPresetObjects[special_1star_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_1_STAR, behavior: bhvDoor },
+SpecialPresetObjects[special_3star_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_DOOR_3_STARS, behavior: bhvDoor },
+SpecialPresetObjects[special_key_door] = { type: SPTYPE_DEF_PARAM_AND_YROT, model: MODEL_CASTLE_KEY_DOOR, behavior: bhvDoor },
+SpecialPresetObjects[special_unknown_5] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_UNKNOWN_AC, behavior: bhvCastleFloorTrap },
+SpecialPresetObjects[special_wooden_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_WOODEN_DOOR }, // bhvDoorWarp },
+SpecialPresetObjects[special_castle_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_CASTLE_DOOR }, // bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_28, bhvDoorWarp },
-SpecialObjectPresets[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_METAL_DOOR } // bhvDoorWarp },
+SpecialPresetObjects[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_METAL_DOOR } // bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2A, bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2B, bhvDoorWarp }
 

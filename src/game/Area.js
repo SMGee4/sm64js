@@ -62,7 +62,7 @@ class Area {
             this.gCurAreaIndex = this.gCurrentArea.index
 
             if (this.gCurrentArea.terrainData) {
-                SurfaceLoad.load_area_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.macroObjects)
+                SurfaceLoad.load_area_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.macroObjects, this.gCurrentArea.specialObjects)
             }
 
             if (this.gCurrentArea.objectSpawnInfos) {
@@ -163,6 +163,7 @@ class Area {
                 terrainData: null,
                 surfaceRooms: null,
                 macroObjects: null,
+                specialObjects: null,
                 warpNodes: null,
                 paintingWarpNodes: null,
                 instantWarps: null,
