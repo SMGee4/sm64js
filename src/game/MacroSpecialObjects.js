@@ -26,7 +26,7 @@ import {
 } from "../include/surface_terrains"
 
 import {
-    //MODEL_BBH_HAUNTED_DOOR,
+    MODEL_BBH_HAUNTED_DOOR,
     MODEL_BOB_BUBBLY_TREE,
     MODEL_CCM_SNOW_TREE,
     MODEL_LEVEL_GEOMETRY_03,
@@ -51,7 +51,7 @@ import {
     MODEL_LEVEL_GEOMETRY_16,
 } from "../include/model_ids"
 
-import { bhvTree, bhvStaticObject, } from "./BehaviorData"
+import { bhvTree, bhvStaticObject, bhvDoor } from "./BehaviorData"
 import { spawn_object_abs_with_rot } from "./ObjectHelpers"
 import { oBehParams, RESPAWN_INFO_DONT_RESPAWN, oUnk1A8, oBehParams2ndByte, RESPAWN_INFO_TYPE_16 } from "../include/object_constants"
 import { MacroObjectPresets } from "../include/macro_presets"
@@ -64,7 +64,7 @@ const SPTYPE_UNKNOWN            = 3 // object is 14-bytes long, has 3 extra shor
 const SPTYPE_DEF_PARAM_AND_YROT = 4 // object is 10-bytes long, has y-rotation and uses the default param
 
 const SpecialObjectPresets = {}
-//SpecialObjectPresets[special_haunted_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_BBH_HAUNTED_DOOR, behavior: bhvDoor },
+SpecialObjectPresets[special_haunted_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_BBH_HAUNTED_DOOR, behavior: bhvDoor },
 SpecialObjectPresets[special_bubble_tree] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_BOB_BUBBLY_TREE, behavior: bhvTree }
 SpecialObjectPresets[special_snow_tree] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_CCM_SNOW_TREE, behavior: bhvTree }
 SpecialObjectPresets[special_level_geo_03] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_LEVEL_GEOMETRY_03, behavior: bhvStaticObject }

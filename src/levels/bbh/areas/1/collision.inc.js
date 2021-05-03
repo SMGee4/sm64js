@@ -3755,7 +3755,7 @@ export const bbh_seg7_collision_level = [
     ...COL_TRI(8, 9, 10),
     ...COL_TRI(8, 11, 9),
     ...COL_TRI(12, 14, 15),
-	...COL_TRI_STOP(),
+    ...COL_TRI_STOP(),
     ...COL_SPECIAL_INIT(25), // Since null start is unused special_init is 25 now. Who knew?
     ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_haunted_door, /*pos*/ 0, -2457, 2099, /*yaw*/ 128),
     ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_haunted_door, /*pos*/ -1996, -2457, 205, /*yaw*/ 192),
