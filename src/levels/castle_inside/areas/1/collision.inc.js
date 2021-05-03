@@ -13,10 +13,16 @@ import {
     SURFACE_VERY_SLIPPERY,
     SURFACE_NOT_SLIPPERY,
     SURFACE_NO_CAM_COLLISION,
-    SURFACE_TRAPDOOR
+    SURFACE_TRAPDOOR,
+    SPECIAL_OBJECT_WITH_YAW_AND_PARAM, 
+    special_castle_door_warp, 
+    special_0stars_door, 
+    special_1star_door, 
+    special_3star_door, 
+    special_wooden_door, 
+    special_wooden_door_warp
 } from "../../../../include/surface_terrains"
-
-import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_castle_door_warp, special_0stars_door, special_1star_door, special_3star_door, special_wooden_door, special_wooden_door_warp } from "../../../../include/special_presets"
+//import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_castle_door_warp, special_0stars_door, special_1star_door, special_3star_door, special_wooden_door, special_wooden_door_warp } from "../../../../include/special_presets"
 
 export const inside_castle_seg7_area_1_collision = [
     ...COL_INIT(),
@@ -3759,19 +3765,16 @@ export const inside_castle_seg7_area_1_collision = [
     ...COL_TRI(77, 78, 79),
     ...COL_TRI(77, 79, 80),
     ...COL_TRI_STOP(),
-    /*
-    ...COL_SPECIAL_INIT(11),
-    SPECIAL_OBJECT_WITH_YAW( special_null_start,         -1023,    0,  1152,  128), // unused, probably an early way to set intial position 
-    */
-    ...SPECIAL_OBJECT_WITH_YAW( special_wooden_door,         -271,    0,  -824,   32),
-    ...SPECIAL_OBJECT_WITH_YAW( special_wooden_door,        -1775,    0,  -824,  224),
-    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -1100,    0,  2202,    0,  0),
-    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_castle_door_warp,   -946,     0,  2202,  128,  1),
-    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM( special_wooden_door_warp,   -1023, -101, -5170,    0,  2),
-    ...SPECIAL_OBJECT_WITH_YAW( special_0stars_door,        -3122,  205,  -793,   64),
-    ...SPECIAL_OBJECT_WITH_YAW( special_1star_door,           256,    0, -1074,    0),
-    ...SPECIAL_OBJECT_WITH_YAW( special_1star_door,           644,  614, -1476,  224),
-    ...SPECIAL_OBJECT_WITH_YAW( special_3star_door,          1075,  205,  -229,  192),
-    ...SPECIAL_OBJECT_WITH_YAW( special_3star_door,         -2303,    0, -1074,    0),
+    ...COL_SPECIAL_INIT(10), // since null start is unused that makes special_init 10 now. Who knew?
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_wooden_door, /*pos*/ -271, 0, -824, /*yaw*/ 32),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_wooden_door, /*pos*/ -1775, 0, -824, /*yaw*/ 224),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_castle_door_warp, /*pos*/ -1100, 0, 2202, /*yaw*/ 0, /*behParam2*/ 0),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_castle_door_warp, /*pos*/ -946, 0, 2202, /*yaw*/ 128, /*behParam2*/ 1),
+    ...SPECIAL_OBJECT_WITH_YAW_AND_PARAM(/*preset*/ special_wooden_door_warp, /*pos*/ -1023,-101, -5170, /*yaw*/ 0, /*behParam2*/ 2),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_0stars_door, /*pos*/ -3122, 205, -793, /*yaw*/ 64),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_1star_door, /*pos*/ 256, 0, -1074, /*yaw*/ 0),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_1star_door, /*pos*/ 644, 614, -1476, /*yaw*/ 224),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_3star_door, /*pos*/ 1075, 205, -229, /*yaw*/ 192),
+    ...SPECIAL_OBJECT_WITH_YAW(/*preset*/ special_3star_door, /*pos*/ -2303, 0, -1074, /*yaw*/ 0),
     ...COL_END(),
 ]

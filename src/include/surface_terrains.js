@@ -107,7 +107,22 @@ export const special_level_geo_16 = 120
 export const special_bubble_tree = 121
 export const special_spiky_tree = 122
 export const special_snow_tree = 123
+export const special_wooden_door_unused = 69
+export const special_0stars_door = 75
+export const special_1star_door = 76
+export const special_castle_door = 79
+export const special_unknown_door_1E = 71
+export const special_metal_door = 72
+export const special_3star_door = 77
+export const special_hmc_door = 73
+export const special_key_door = 78
+export const special_unknown_door = 74
+export const special_unknown_5 = 73
+export const special_wooden_door_warp = 60
+export const special_metal_door_warp = 61
 export const special_haunted_door = 62
+export const special_castle_door_warp = 63
+export const special_wooden_door = 64
 
 export const COL_INIT = () => { return [TERRAIN_LOAD_VERTICES] }
 export const COL_END = () => { return [TERRAIN_LOAD_END] }
@@ -119,9 +134,8 @@ export const COL_TRI = (v1, v2, v3) => { return [v1, v2, v3] }
 export const COL_TRI_SPECIAL = (v1, v2, v3, param) => { return [v1, v2, v3, param] }
 export const COL_SPECIAL_INIT = (num) => { return [TERRAIN_LOAD_OBJECTS, num] }
 export const SPECIAL_OBJECT = (preset, posX, posY, posZ) => { return [preset, posX, posY, posZ] }
-export const SPECIAL_OBJECT_WITH_YAW = (preset, posX, posY, posZ, yaw) => {
-    return [preset, posX, posY, posZ, yaw]
-}
+export const SPECIAL_OBJECT_WITH_YAW_AND_PARAM = (preset, posX, posY, posZ, yaw, param) => { return [preset, posX, posY, posZ, yaw, param] }
+export const SPECIAL_OBJECT_WITH_YAW = (preset, posX, posY, posZ, yaw) => { return [preset, posX, posY, posZ, yaw] }
 export const COL_WATER_BOX_INIT = (num) => { return [TERRAIN_LOAD_ENVIRONMENT, num] }
 export const COL_WATER_BOX = (id, x1, z1, x2, z2, y) => {
     return [id, x1, z1, x2, z2, y]
