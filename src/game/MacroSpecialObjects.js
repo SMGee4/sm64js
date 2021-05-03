@@ -1,5 +1,21 @@
 import { ObjectListProcessorInstance as ObjectListProc } from "./ObjectListProcessor"
 import {
+    special_0stars_door,
+    special_3star_door,
+    special_1star_door,
+    special_castle_door,
+    special_castle_door_warp,
+    special_haunted_door,
+    special_hmc_door,
+    special_key_door,
+    special_metal_door,
+    special_metal_door_warp,
+    special_unknown_5,
+    special_unknown_door,
+    special_unknown_door_1E,
+    special_wooden_door,
+    special_wooden_door_unused,
+    special_wooden_door_warp,
     special_bubble_tree,
     special_snow_tree,
     special_level_geo_03,
@@ -25,7 +41,6 @@ import {
 } from "../include/surface_terrains"
 
 import {
-    MODEL_BBH_HAUNTED_DOOR,
     MODEL_BOB_BUBBLY_TREE,
     MODEL_CCM_SNOW_TREE,
     MODEL_LEVEL_GEOMETRY_03,
@@ -65,6 +80,7 @@ const SPTYPE_UNKNOWN            = 3 // object is 14-bytes long, has 3 extra shor
 const SPTYPE_DEF_PARAM_AND_YROT = 4 // object is 10-bytes long, has y-rotation and uses the default param
 
 const SpecialObjectPresets = {}
+
 SpecialObjectPresets[special_castle_door] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_CASTLE_CASTLE_DOOR, behavior: bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_wooden_door_unused] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, defParam: 0, model: MODEL_CASTLE_WOODEN_DOOR_UNUSED, bhvDoor },
 //SPECIAL_OBJECT_WITH_YAW_AND_PARAM[special_unknown_door_1E] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_UNKNOWN_DOOR_1E, bhvDoor },
@@ -85,7 +101,8 @@ SpecialObjectPresets[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, 
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2A, bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2B, bhvDoorWarp }
 
-// Should probably not add the unused models.
+// Should probably not add the unused models. 
+
 SpecialObjectPresets[special_bubble_tree] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_BOB_BUBBLY_TREE, behavior: bhvTree }
 SpecialObjectPresets[special_snow_tree] = { type: SPTYPE_NO_YROT_OR_PARAMS, defParam: 0, model: MODEL_CCM_SNOW_TREE, behavior: bhvTree }
 SpecialObjectPresets[special_level_geo_03] = { type: SPTYPE_YROT_NO_PARAMS, defParam: 0, model: MODEL_LEVEL_GEOMETRY_03, behavior: bhvStaticObject }
@@ -146,6 +163,14 @@ export const spawn_macro_abs_special = (model, behavior, x, y, z) => {
 spawn_object_abs_with_rot(ObjectListProc.gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, 0, 0)
 }
 
+export const spawn_macro_abs_yrot_param1 = (model, behavior, x, y, z, param) => {
+    if (behavior) {
+        const newObj = spawn_object_abs_with_rot(ObjectListProc.gMacroObjectDefaultParent, 0, model, behavior, x, y, z, 0, convert_rotation)
+        newObj.rawData[oBehParams] = param << 24
+    }
+}
+
+
 export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
     const numOfSpecialObjects = specialObjList[dataIndex++]
 
@@ -166,6 +191,12 @@ export const spawn_special_objects = (areaIndex, specialObjList, dataIndex) => {
             case SPTYPE_YROT_NO_PARAMS:
                 const yaw = specialObjList[dataIndex++]
                 spawn_macro_abs_yrot_2params(model, behavior, x, y, z, yaw, 0)
+                break
+            case SPTYPE_PARAMS_AND_YROT:
+                spawn_macro_abs_yrot_2params(model, behavior, x, y, z )
+                break
+            case SPTYPE_DEF_PARAM_AND_YROT:
+                spawn_macro_abs_yrot_param1(model, behavior, x, y, z )
                 break
             default: throw "unkown special object type"
         }
