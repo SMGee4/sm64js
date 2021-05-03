@@ -1,5 +1,4 @@
 import * as Gbi from "../../include/gbi"
-
 const door_seg3_lights_03009CE0 = Gbi.gdSPDefLights1(
 	    0x3f, 0x3f, 0x3f,
 	    0xff, 0xff, 0xff, 0x28, 0x28, 0x28
@@ -24,6 +23,7 @@ export const door_seg3_texture_03011D10 = []
 export const door_seg3_texture_03012510 = []
 export const door_seg3_texture_03012D10 = []
 export const door_seg3_texture_03013510 = []
+
 
 const door_seg3_vertex_03013910 = [
 	{ pos: [ -12, 0, -58 ], flag: 0, tc: [ 0, 0 ], color: [ 129, 0, 0, 255 ] },
@@ -694,3 +694,4 @@ export const door_seg3_dl_03015158 = [
 	Gbi.gsSPLight(door_seg3_lights_03009CF8.a, 2),
 	Gbi.gsSPBranchList(door_seg3_dl_03014F30),
 ]
+

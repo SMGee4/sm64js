@@ -3,7 +3,8 @@ import { cur_obj_has_model, cur_obj_change_action, cur_obj_clear_interact_status
 import { oAction, oTimer, oPosY, oPosX, oPosZ, oDoorUnkF8, oMoveAngleYaw, oDoorUnkFC, oDoorUnk100, oDoorUnk88 } from "../../include/object_constants"
 import { sins, coss } from "../../utils"
 import { SurfaceCollisionInstance as SurfaceCollision } from "../../engine/SurfaceCollision" 
-
+import { SurfaceLoadInstance } from "../SurfaceLoad"
+import { GRAPH_RENDER_ACTIVE } from "../engine/graph_node"
 
 /*export const door_animation_and_reset(s32 sp18) {
     cur_obj_init_animation_with_sound(sp18)
@@ -128,11 +129,11 @@ export const bhv_star_door_loop_2 = () => {
     } else
         sp4 = 1
     if (sp4 == 1) {
-        (o.header.gfx.node.flags |= GRAPH_RENDER_ACTIVE)
+        (ObjectListProc.gCurrentObject.header.gfx.node.flags |= GRAPH_RENDER_ACTIVE)
         D_8035FEE4++
     }
     if (sp4 == 0) {
-        (o.header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE)
+        (ObjectListProc.gCurrentObject.header.gfx.node.flags &= ~GRAPH_RENDER_ACTIVE)
     }
     (o.rawData[oDoorUnk88] = sp4)
 }

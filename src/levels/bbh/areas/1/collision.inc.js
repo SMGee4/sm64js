@@ -9,10 +9,12 @@ import {
 
     SURFACE_DEFAULT,
     SURFACE_VERY_SLIPPERY,
-    SURFACE_INTANGIBLE
+    SURFACE_INTANGIBLE,
+    
+    special_haunted_door
 } from "../../../../include/surface_terrains"
 
-import { special_haunted_door, SPECIAL_OBJECT_WITH_YAW, COL_SPECIAL_INIT,} from  "../../../../include/special_presets"
+import { SPECIAL_OBJECT_WITH_YAW, COL_SPECIAL_INIT,} from  "../../../../include/special_presets"
 
 export const bbh_seg7_collision_level = [
     ...COL_INIT(),
