@@ -14,6 +14,7 @@ import {
     SURFACE_NOT_SLIPPERY,
     SURFACE_NO_CAM_COLLISION,
     SURFACE_TRAPDOOR,
+    /*
     SPECIAL_OBJECT_WITH_YAW_AND_PARAM, 
     special_castle_door_warp, 
     special_0stars_door, 
@@ -21,8 +22,9 @@ import {
     special_3star_door, 
     special_wooden_door, 
     special_wooden_door_warp
+    */
 } from "../../../../include/surface_terrains"
-//import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_castle_door_warp, special_0stars_door, special_1star_door, special_3star_door, special_wooden_door, special_wooden_door_warp } from "../../../../include/special_presets"
+import { SPECIAL_OBJECT_WITH_YAW_AND_PARAM, special_castle_door_warp, special_0stars_door, special_1star_door, special_3star_door, special_wooden_door, special_wooden_door_warp } from "../../../../include/special_presets"
 
 export const inside_castle_seg7_area_1_collision = [
     ...COL_INIT(),

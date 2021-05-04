@@ -23,7 +23,6 @@ export const castle_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -45,7 +44,6 @@ export const cabin_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
-	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
@@ -73,7 +71,6 @@ export const wooden_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -95,7 +92,6 @@ export const wooden_door2_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
-	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
@@ -123,7 +119,6 @@ export const metal_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -148,7 +143,6 @@ export const hazy_maze_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -170,7 +164,6 @@ export const haunted_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
-	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
@@ -204,7 +197,6 @@ export const castle_door_0_star_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -232,7 +224,6 @@ export const castle_door_1_star_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
-	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
@@ -266,7 +257,6 @@ export const castle_door_3_stars_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
-	{ command: Geo.close_node },
 	{ command: Geo.node_end },
 ]
 
@@ -294,7 +284,6 @@ export const key_door_geo = [
 	{ command: Geo.close_node },
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
 	{ command: Geo.node_animated_part, args: [Geo.LAYER_OPAQUE, 0, 0, 0, null]},
-	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },
 	{ command: Geo.close_node },

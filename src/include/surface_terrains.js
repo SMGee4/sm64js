@@ -107,6 +107,7 @@ export const special_level_geo_16 = 120
 export const special_bubble_tree = 121
 export const special_spiky_tree = 122
 export const special_snow_tree = 123
+/*
 export const special_wooden_door_unused = 69
 export const special_0stars_door = 75
 export const special_1star_door = 76
@@ -123,6 +124,7 @@ export const special_metal_door_warp = 61
 export const special_haunted_door = 62
 export const special_castle_door_warp = 63
 export const special_wooden_door = 64
+*/
 
 export const COL_INIT = () => { return [TERRAIN_LOAD_VERTICES] }
 export const COL_END = () => { return [TERRAIN_LOAD_END] }

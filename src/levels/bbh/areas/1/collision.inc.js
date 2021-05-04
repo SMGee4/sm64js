@@ -10,8 +10,6 @@ import {
     SURFACE_DEFAULT,
     SURFACE_VERY_SLIPPERY,
     SURFACE_INTANGIBLE,
-    
-    //special_haunted_door
 } from "../../../../include/surface_terrains"
 
 import { SPECIAL_OBJECT_WITH_YAW, COL_SPECIAL_INIT, special_haunted_door } from  "../../../../include/special_presets"
@@ -3765,21 +3763,21 @@ export const bbh_seg7_collision_level = [
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -2136, -204, 4527, /*yaw*/ 224 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 0, -2457, 4659, /*yaw*/ 128 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 2099, 1741, 486, /*yaw*/ 64 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 589, 1922, 1894, /*yaw*/  0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 589, 1922, 1894, /*yaw*/ 0 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 742, 1922, 1894, /*yaw*/ 128 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -1970, 1024, 1075, /*yaw*/ 128 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -2021, 0, 1075, /*yaw*/ 128 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 2099, 819, 1818, /*yaw*/ 192 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 3354, 0, 1075, /*yaw*/  0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 3354, 0, 1075, /*yaw*/ 0 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 742, 0, 2099, /*yaw*/ 128 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 589, 0, 2099, /*yaw*/  0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 589, 0, 2099, /*yaw*/ 0 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 2099, 0, 1459, /*yaw*/ 192 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 179, 819, -50, /*yaw*/  0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 179, 819, -50, /*yaw*/ 0 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 2099, 819, 486, /*yaw*/ 192 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 435, 0, -50, /*yaw*/  0 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 1613, 0, -50, /*yaw*/  0 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 1613, 819, -50, /*yaw*/  0 ),
-    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -1561, 0, -1586, /*yaw*/  0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 435, 0, -50, /*yaw*/ 0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 1613, 0, -50, /*yaw*/ 0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, 1613, 819, -50, /*yaw*/ 0 ),
+    ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -1561, 0, -1586, /*yaw*/ 0 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -767, 819, 1408, /*yaw*/ 64 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -767, 819, 640, /*yaw*/ 64 ),
     ...SPECIAL_OBJECT_WITH_YAW(special_haunted_door, -50, 0, 640, /*yaw*/ 64 ),

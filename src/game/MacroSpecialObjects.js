@@ -106,7 +106,6 @@ SpecialObjectPresets[special_castle_door_warp] = { type: SPTYPE_PARAMS_AND_YROT,
 SpecialObjectPresets[special_metal_door_warp] = { type: SPTYPE_PARAMS_AND_YROT, model: MODEL_CASTLE_METAL_DOOR } // bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2A, bhvDoorWarp },
 //SpecialPresets[special = { type: SPTYPE_PARAMS_AND_YROT, MODEL_UNKNOWN_DOOR_2B, bhvDoorWarp }
-
 // Should probably not add the unused models. 
 */
 

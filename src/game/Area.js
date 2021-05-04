@@ -64,6 +64,19 @@ class Area {
             if (this.gCurrentArea.terrainData) {
                 SurfaceLoad.load_area_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.macroObjects)
             }
+            if (this.gCurrentArea.objectSpawnInfos) {
+                ObjectListProc.spawn_objects_from_info(this.gCurrentArea.objectSpawnInfos)
+            }
+        }
+
+    }
+
+    load_special_area(index) {
+
+        if (!this.gCurrentArea && this.gAreas[index]) {
+            this.gCurrentArea = this.gAreas[index]
+            this.gCurAreaIndex = this.gCurrentArea.index
+
             if (this.gCurrentArea.terrainData) {
                 SurfaceLoad.load_area_special_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.specialObjects)
             }
@@ -76,6 +89,7 @@ class Area {
 
     load_mario_area() {
         this.load_area(this.gMarioSpawnInfo.areaIndex)
+        this.load_special_area(this.gMarioSpawnInfo.areaIndex)
 
         if (this.gCurrentArea.index == this.gMarioSpawnInfo.areaIndex) {
             this.gCurrentArea.flags |= 0x01
