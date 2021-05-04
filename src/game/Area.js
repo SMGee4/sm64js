@@ -62,9 +62,11 @@ class Area {
             this.gCurAreaIndex = this.gCurrentArea.index
 
             if (this.gCurrentArea.terrainData) {
-                SurfaceLoad.load_area_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.macroObjects, this.gCurrentArea.specialObjects)
+                SurfaceLoad.load_area_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.macroObjects)
             }
-
+            if (this.gCurrentArea.terrainData) {
+                SurfaceLoad.load_area_special_terrain(index, this.gCurrentArea.terrainData, this.gCurrentArea.surfaceRooms, this.gCurrentArea.specialObjects)
+            }
             if (this.gCurrentArea.objectSpawnInfos) {
                 ObjectListProc.spawn_objects_from_info(this.gCurrentArea.objectSpawnInfos)
             }

@@ -299,7 +299,7 @@ class SurfaceLoad {
 
     // I probably didn't have to duplicate the entire load_area_terrain...
 
-    load_area_terrain(index, data, surfaceRooms, specialObjects) {
+    load_area_special_terrain(index, data, surfaceRooms, specialObjects) {
 
         if (surfaceRooms) surfaceRooms = { index: 0, surfaceRooms }
 
